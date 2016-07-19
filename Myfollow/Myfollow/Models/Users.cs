@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Myfollow.Models
 {
-    public class Users
+    public class Users:CommonProperties
     {
 
         [Required]

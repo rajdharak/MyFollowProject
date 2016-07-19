@@ -1,6 +1,6 @@
 ﻿public class CommonProperties
 {
-    public int Id { get; set; }
+    public int ID { get; set; }
     public DateTime CreateDate { get; set; }
     public DateTime ModifiedDate { get; set; }
 }
