@@ -35,7 +35,7 @@ public class Users :CommonProperties
     [Url]
     public string WebsiteUrl { get; set; }
  
-    public Icollection<Followers> Followers { get; set; }
+    public ICollection<Followers> Followers { get; set; }
     public ICollection<Products> Products { get; set; }
 }​
 public class AddressInfo
@@ -75,8 +75,8 @@ public class Products : CommonProperties
 
     public Users Users { get; set; }
 
-    public Icollection<UpdateDetail> UpdateDetails { get; set; }
-    public Icollection<Followers> Followers { get; set; }
+    public ICollection<UpdateDetail> UpdateDetails { get; set; }
+    public ICollection<Followers> Followers { get; set; }
 
 }
 public class UpdateDetail
@@ -92,7 +92,7 @@ public class UpdateDetail
     public string Details { get; set; }
 
     [Required]
-    public Icollection<Media> Media { get; set; }
+    public ICollection<Media> Media { get; set; }
     public Products Products { get; set; }
 }
     public class Media
