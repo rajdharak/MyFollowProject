@@ -204,6 +204,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddressInfo.cs" />
     <Compile Include="Models\CommonProperties.cs" />
+    <Compile Include="Models\FollowContext.cs" />
     <Compile Include="Models\Followers.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
