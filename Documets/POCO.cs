@@ -79,7 +79,7 @@ public class Products : CommonProperties
     public ICollection<Followers> Followers { get; set; }
 
 }
-public class UpdateDetail
+public class UpdateDetail:CommonProperties
 { 
     [Key]
     public int UpdateId { get; set; }
@@ -95,7 +95,7 @@ public class UpdateDetail
     public ICollection<Media> Media { get; set; }
     public Products Products { get; set; }
 }
-    public class Media
+    public class Media:CommonProperties
     {   
         [Key]
         public int MediaId { get; set; }
@@ -104,7 +104,7 @@ public class UpdateDetail
         [ForeignKey("UpdateId")]
         public UpdateDetail UpdateDetails;
     }
-public class Followers
+public class Followers:CommonProperties
 {
     [Key]
     public int FollowerId{get;set;}

@@ -6,8 +6,7 @@ namespace OwinDemo.Models
     public class User:IdentityUser
     {
         [Required]
-        public string DateOfBirth { get; set; }     
-          
+        public string DateOfBirth { get; set; }       
 
     }
 }

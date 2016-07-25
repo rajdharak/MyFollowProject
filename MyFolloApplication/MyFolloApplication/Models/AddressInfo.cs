@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Myfollow.Models
+namespace MyFolloApplication.Models
 {
     public class AddressInfo
     {
-        [Key]
-        public int Id { get; set; }
         public string Street1 { get; set; }
         public string Street2 { get; set; }
         public string City { get; set; }
@@ -17,5 +14,6 @@ namespace Myfollow.Models
         public string Country { get; set; }
         public long Pin { get; set; }
         public string ContactNo { get; set; }
+
     }
 }

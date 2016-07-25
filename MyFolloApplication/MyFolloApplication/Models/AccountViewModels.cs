@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Myfollow.Models
+namespace MyFolloApplication.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
@@ -48,6 +48,7 @@ namespace Myfollow.Models
 
     public class LoginViewModel
     {
+        public string UserName { get; set; }
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -64,6 +65,9 @@ namespace Myfollow.Models
 
     public class RegisterViewModel
     {
+
+        [Required]
+        public string UserName { get; set; }
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
@@ -79,6 +83,9 @@ namespace Myfollow.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [DataType(DataType.Date)]
+        public string DateOfBirth { get; set; }
+        public AddressInfo Address { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -100,7 +107,6 @@ namespace Myfollow.Models
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
-        public string Stree1 { get; set; }
     }
 
     public class ForgotPasswordViewModel
