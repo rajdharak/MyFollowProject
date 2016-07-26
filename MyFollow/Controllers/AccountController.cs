@@ -100,6 +100,12 @@ namespace MyFollow.Controllers
                     ModelState.AddModelError("", "Invalid username or password.");
                 }
             }
+            var userid = UserManager.FindByName(model.UserName).Id;
+            if (!UserManager.IsEmailConfirmed(userid))
+            {
+                return View("ConfirmEmailDemo");
+            }
+
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
