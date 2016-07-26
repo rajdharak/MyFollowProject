@@ -1,5 +1,7 @@
 namespace MyFollow.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +28,29 @@ namespace MyFollow.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Admin" };
+                manager.Create(role);
+            }
+            if (!context.Roles.Any(r => r.Name == "Users"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Users" };
+                manager.Create(role);
+            }
+            if (!context.Roles.Any(r => r.Name == "Owner"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Owner" };
+                manager.Create(role);
+            }
+
+
         }
     }
 }

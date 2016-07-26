@@ -178,8 +178,8 @@ namespace MyFollow.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            using (var context = new ApplicationDbContext())
-            {
+            
+            
                 if (ModelState.IsValid)
                 {
                     if (ModelState.IsValid)
@@ -189,16 +189,12 @@ namespace MyFollow.Controllers
                         user.EmailConfirmed = false;
                         var result = await UserManager.CreateAsync(user, model.Password);
 
-                        var roleStore = new RoleStore<IdentityRole>(context);
-                        var roleManager = new RoleManager<IdentityRole>(roleStore);
-
-                        var userStore = new UserStore<ApplicationUser>(context);
-                        var userManager = new UserManager<ApplicationUser>(userStore);
-                        userManager.AddToRole(user.Id, "Users");
+                       
 
 
                         if (result.Succeeded)
                         {
+                            var roleresult = UserManager.AddToRole(user.Id, "Users");
                             MailMessage m = new MailMessage(
                             new MailAddress("raj@promactinfo.com", "Web Registration"),
                             new MailAddress(user.Email));
@@ -220,7 +216,7 @@ namespace MyFollow.Controllers
                     }
 
                 }
-            }
+            
             // If we got this far, something failed, redisplay form
             return View(model);
         }
