@@ -48,6 +48,7 @@ namespace MyFollow.Models
 
     public class LoginViewModel
     {
+        public string UserName { get; set; }
         [Required]
         [Display(Name = "Email")]
         [EmailAddress]
@@ -65,6 +66,8 @@ namespace MyFollow.Models
     public class RegisterViewModel
     {
         [Required]
+        public string UserName { get; set; }
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +82,9 @@ namespace MyFollow.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [DataType(DataType.Date)]
+        public string DateOfBirth { get; set; }
+        public AddressInfo Address { get; set; }
     }
 
     public class ResetPasswordViewModel

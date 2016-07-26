@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.ComponentModel.DataAnnotations;
 
 namespace MyFollow.Models
 {
@@ -16,6 +17,11 @@ namespace MyFollow.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        [DataType(DataType.Date)]
+        public string DateOfBirth { get; set; }
+        public AddressInfo Address { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

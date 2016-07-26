@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MyFollow.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Net.Mail;
+using System.Net;
 
 namespace MyFollow.Controllers
 {
@@ -70,7 +73,32 @@ namespace MyFollow.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                var user = await UserManager.FindAsync(model.UserName, model.Password);
+                if (user != null)
+                {
+                    if (UserManager.IsInRole(user.Id, "Users"))
+                    {
+
+                        if (user.EmailConfirmed == true)
+                        {
+                            await SignInAsync(user, model.RememberMe); return RedirectToLocal(returnUrl);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Confirm Email Address.");
+                        }
+                    }
+                    else if (UserManager.IsInRole(user.Id, "Admin"))
+                    {
+                        return RedirectToAction("Index", "Admin");
+                    }
+
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid username or password.");
+                }
             }
 
             // This doesn't count login failures towards account lockout
@@ -144,48 +172,91 @@ namespace MyFollow.Controllers
 
         //
         // POST: /Account/Register
+        // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            if (ModelState.IsValid)
+            using (var context = new ApplicationDbContext())
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                if (ModelState.IsValid)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    if (ModelState.IsValid)
+                    {
+                        var user = new ApplicationUser() { UserName = model.UserName, DateOfBirth = model.DateOfBirth, Address = model.Address, Email = model.Email };
 
-                    return RedirectToAction("Index", "Home");
+                        user.EmailConfirmed = false;
+                        var result = await UserManager.CreateAsync(user, model.Password);
+
+                        var roleStore = new RoleStore<IdentityRole>(context);
+                        var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                        var userStore = new UserStore<ApplicationUser>(context);
+                        var userManager = new UserManager<ApplicationUser>(userStore);
+                        userManager.AddToRole(user.Id, "Users");
+
+
+                        if (result.Succeeded)
+                        {
+                            MailMessage m = new MailMessage(
+                            new MailAddress("raj@promactinfo.com", "Web Registration"),
+                            new MailAddress(user.Email));
+                            m.Subject = "Email confirmation";
+                            m.Body = string.Format("Dear {0}<BR/>Thank you for your registration,Click to Confirm Email <a href=\"{1}\" title=\"User Email Confirm\">{1}</a>", user.UserName, Url.Action("ConfirmEmail", "Account", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme));
+                            m.IsBodyHtml = true;
+                            SmtpClient smtp = new SmtpClient("webmail.promactinfo.com");
+                            smtp.Credentials = new NetworkCredential("raj@promactinfo.com", "EDajOeKH*fYE7XWs");
+                            //ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+                            //{ return true; };
+                            smtp.EnableSsl = false;
+                            smtp.Send(m);
+                            return RedirectToAction("ConfirmEmailDemo", "Account");
+                        }
+                        else
+                        {
+                            AddErrors(result);
+                        }
+                    }
+
                 }
-                AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        [AllowAnonymous]
+        public ActionResult ConfirmEmailDemo(string Email)
+        {
+            ViewBag.Email = Email;
+            return View();
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
-        public async Task<ActionResult> ConfirmEmail(string userId, string code)
+        public async Task<ActionResult> ConfirmEmail(string Token, string Email)
         {
-            if (userId == null || code == null)
+            ApplicationUser user = this.UserManager.FindById(Token);
+            if (user != null)
             {
-                return View("Error");
+                if (user.Email == Email)
+                {
+                    user.EmailConfirmed = true;
+                    await UserManager.UpdateAsync(user);
+                    await SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Login", "Account", new { ConfirmedEmail = user.Email });
+                }
+                else
+                {
+                    return RedirectToAction("ConfirmEmailDemo", "Account", new { Email = user.Email });
+                }
             }
-            var result = await UserManager.ConfirmEmailAsync(userId, code);
-            return View(result.Succeeded ? "ConfirmEmail" : "Error");
+            else
+            {
+                return RedirectToAction("ConfirmEmailDemo", "Account", new { Email = "" });
+            }
+
         }
 
-        //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
         public ActionResult ForgotPassword()
@@ -433,6 +504,12 @@ namespace MyFollow.Controllers
             {
                 return HttpContext.GetOwinContext().Authentication;
             }
+        }
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, identity);
         }
 
         private void AddErrors(IdentityResult result)
