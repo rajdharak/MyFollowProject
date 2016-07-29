@@ -186,8 +186,7 @@ namespace MyFollow.Controllers
         {
             
             
-                if (ModelState.IsValid)
-                {
+                
                     if (ModelState.IsValid)
                     {
                         var user = new ApplicationUser() { UserName = model.UserName, DateOfBirth = model.DateOfBirth, Address = model.Address, Email = model.Email };
@@ -209,8 +208,7 @@ namespace MyFollow.Controllers
                             m.IsBodyHtml = true;
                             SmtpClient smtp = new SmtpClient("webmail.promactinfo.com");
                             smtp.Credentials = new NetworkCredential("raj@promactinfo.com", "EDajOeKH*fYE7XWs");
-                            //ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-                            //{ return true; };
+                  
                             smtp.EnableSsl = false;
                             smtp.Send(m);
                             return RedirectToAction("ConfirmEmailDemo", "Account");
@@ -221,7 +219,7 @@ namespace MyFollow.Controllers
                         }
                     }
 
-                }
+                
             
             // If we got this far, something failed, redisplay form
             return View(model);
