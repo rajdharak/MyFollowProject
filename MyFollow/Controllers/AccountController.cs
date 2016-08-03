@@ -25,7 +25,7 @@ namespace MyFollow.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -37,9 +37,9 @@ namespace MyFollow.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -81,7 +81,7 @@ namespace MyFollow.Controllers
 
                         if (user.EmailConfirmed == true)
                         {
-                            await SignInAsync(user, model.RememberMe); return RedirectToLocal(returnUrl);
+                            await SignInAsync(user, model.RememberMe); return RedirectToAction("Index","Users");
                         }
                         else
                         {
@@ -109,7 +109,7 @@ namespace MyFollow.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -154,7 +154,7 @@ namespace MyFollow.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -184,43 +184,43 @@ namespace MyFollow.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            
-            
-                
-                    if (ModelState.IsValid)
-                    {
-                        var user = new ApplicationUser() { UserName = model.UserName, DateOfBirth = model.DateOfBirth, Address = model.Address, Email = model.Email };
-
-                        user.EmailConfirmed = false;
-                        var result = await UserManager.CreateAsync(user, model.Password);
-
-                       
 
 
-                        if (result.Succeeded)
-                        {
-                            var roleresult = UserManager.AddToRole(user.Id, "Users");
-                            MailMessage m = new MailMessage(
-                            new MailAddress("raj@promactinfo.com", "Web Registration"),
-                            new MailAddress(user.Email));
-                            m.Subject = "Email confirmation";
-                            m.Body = string.Format("Dear {0}<BR/>Thank you for your registration,Click to Confirm Email <a href=\"{1}\" title=\"User Email Confirm\">{1}</a>", user.UserName, Url.Action("ConfirmEmail", "Account", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme));
-                            m.IsBodyHtml = true;
-                            SmtpClient smtp = new SmtpClient("webmail.promactinfo.com");
-                            smtp.Credentials = new NetworkCredential("raj@promactinfo.com", "EDajOeKH*fYE7XWs");
-                  
-                            smtp.EnableSsl = false;
-                            smtp.Send(m);
-                            return RedirectToAction("ConfirmEmailDemo", "Account");
-                        }
-                        else
-                        {
-                            AddErrors(result);
-                        }
-                    }
 
-                
-            
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser() { UserName = model.UserName, DateOfBirth = model.DateOfBirth, Address = model.Address, Email = model.Email };
+
+                user.EmailConfirmed = false;
+                var result = await UserManager.CreateAsync(user, model.Password);
+
+
+
+
+                if (result.Succeeded)
+                {
+                    var roleresult = UserManager.AddToRole(user.Id, "Users");
+                    MailMessage m = new MailMessage(
+                    new MailAddress("raj@promactinfo.com", "Web Registration"),
+                    new MailAddress(user.Email));
+                    m.Subject = "Email confirmation";
+                    m.Body = string.Format("Dear {0}<BR/>Thank you for your registration,Click to Confirm Email <a href=\"{1}\" title=\"User Email Confirm\">{1}</a>", user.UserName, Url.Action("ConfirmEmail", "Account", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme));
+                    m.IsBodyHtml = true;
+                    SmtpClient smtp = new SmtpClient("webmail.promactinfo.com");
+                    smtp.Credentials = new NetworkCredential("raj@promactinfo.com", "EDajOeKH*fYE7XWs");
+
+                    smtp.EnableSsl = false;
+                    smtp.Send(m);
+                    return RedirectToAction("ConfirmEmailDemo", "Account");
+                }
+                else
+                {
+                    AddErrors(result);
+                }
+            }
+
+
+
             // If we got this far, something failed, redisplay form
             return View(model);
         }

@@ -1,0 +1,32 @@
+﻿
+    <form #f="ngForm">
+        <div class="form-group">
+            <label for="name">CompanyName</label>
+            <input type="text" class="form-control" required
+                   [(ngModel)]="CompanyName" />
+        </div>
+        <div class="form-group">
+            <label for="alterEgo">Description</label>
+            <input type="text" class="form-control"
+                   [(ngModel)]="Description">
+
+        </div>
+
+        <div class="form-group">
+            <label for="name">FoundedYear</label>
+            <input type="text" class="form-control" required
+                   [(ngModel)]="FoundedYear">
+
+        </div>
+
+        <div class="form-group">
+            <label for="name">WebsiteUrl</label>
+            <input type="text" class="form-control" required
+                   [(ngModel)]="WebsiteUrl">
+
+        </div>
+      <button class="btn" (click)="onSubmit(f.valu)">Submit</button>
+        <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
+
+    </form>
+

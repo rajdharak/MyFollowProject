@@ -1,0 +1,35 @@
+﻿<table class="table" border="1">
+    <tr>
+        <th>
+            CompanyName
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            FoundedYear
+        </th>
+        <th>
+            WebsiteUrl
+        </th>
+    </tr>
+    <tr>
+        <td>
+            {{ CompanyName }}
+        </td>
+
+        <td>
+            {{ Description }}
+        </td>
+
+        <td>
+            {{ FoundedYear }}
+        </td>
+
+        <td>
+            {{ WebsiteUrl }}
+        </td>
+    </tr>
+   
+</table>
+<a [routerLink]="['/become-owner']" routerLinkActive="active">Become Owner</a>
