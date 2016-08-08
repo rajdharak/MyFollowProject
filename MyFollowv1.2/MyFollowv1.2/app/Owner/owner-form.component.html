@@ -1,0 +1,29 @@
+﻿
+        <form #ownerForm>
+            <div class="form-group">
+                <label for="name">CompanyName</label>
+                <input type="text" class="form-control" required
+                       [(ngModel)]="owner.CompanyName" />
+            </div>
+            <div class="form-group">
+                <label for="alterEgo">Description</label>
+                <input type="text" class="form-control"
+                       [(ngModel)]="owner.Description" />
+                     
+            </div>
+            <div class="form-group">
+                <label for="alterEgo">FoundedYear</label>
+                <input type="text" class="form-control"
+                       [(ngModel)]="owner.FoundedYear" />
+
+            </div>
+            <div class="form-group">
+                <label for="alterEgo">Websiteurl</label>
+                <input type="text" class="form-control"
+                       [(ngModel)]="owner.Websiteurl" />
+
+            </div>
+            <button (click)="addOwner(ownerForm.value);ownerForm=''">
+               Submit
+            </button>
+        </form>
