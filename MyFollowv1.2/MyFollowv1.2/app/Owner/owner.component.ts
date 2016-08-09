@@ -1,19 +1,15 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Owner }from './owner';
 import { OwnerService }from './owner.service';
+
+
+
+
+
 @Component({
     selector: 'my-app',
-    template:`
-<ul>
-  <li *ngFor="let owner of owners">
-    {{owner.CompanyName}}
-    {{owner.Description}}
-    {{owner.FoundedYear}}
-    {{owner.Websiteurl}}
-  </li>
-</ul>
-`,
-    providers:[OwnerService]
+    templateUrl: 'app/Owner/owner.component.html',
+    providers: [OwnerService]
 })
 export class OwnerComponent implements OnInit {
     owners: Array<Owner>;
@@ -21,18 +17,38 @@ export class OwnerComponent implements OnInit {
     errorMessage: string;
     constructor(private ownerservice: OwnerService) {
         this.owners = new Array<Owner>();
-        this.owner = new Owner();}
+        this.owner = new Owner();
+    }
 
     ngOnInit() {
         this.getOwners();
     }
- 
+
     getOwners() {
-        this.ownerservice.getOwner()
+        var displayOwner = this.ownerservice.getOwner()
             .subscribe((owners) => {
                 this.owners = owners
             }, err => {
                 this.errorMessage = err;
             });
-    }    
+    }
+
+    beOwner: boolean = false;
+    showForm(): void{
+           this.beOwner = !this.beOwner; 
+    } 
+
+
+
+    onSubmit(owner: Owner) {
+        var postOwner = this.ownerservice.setOwner(this.owner)
+            .subscribe((owners) => {
+                this.owners = owners
+            }, err => {
+                this.errorMessage = err;
+            });
+      
+    }
+    
+
 }

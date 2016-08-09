@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
+var Observable_1 = require('rxjs/Observable');
 // import 'rxjs/Rx'; // adds ALL RxJS statics & operators to Observable
 // See node_module/rxjs/Rxjs.js
 // Import just the rxjs statics and operators we need for THIS app.
@@ -30,6 +31,20 @@ var OwnerService = (function () {
     OwnerService.prototype.getOwner = function () {
         return this.http.get(this.ownerUrl)
             .map(function (response) { return response.json(); });
+    };
+    OwnerService.prototype.setOwner = function (owner) {
+        var headers = new http_1.Headers({
+            'Content-Type': 'application/json'
+        });
+        return this.http
+            .post(this.ownerUrl, JSON.stringify(owner), { headers: headers })
+            .map(function (res) { return res.json().data; });
+    };
+    OwnerService.prototype.handleError = function (error) {
+        var errMsg = (error.message) ? error.message :
+            error.status ? error.status + " - " + error.statusText : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable_1.Observable.throw(errMsg);
     };
     OwnerService = __decorate([
         core_1.Injectable(), 

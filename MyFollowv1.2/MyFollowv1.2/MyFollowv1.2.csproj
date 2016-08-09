@@ -203,7 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\main.js" />
-    <Content Include="app\Owner\owner-form.component.html" />
+    <Content Include="app\Owner\owner.component.html" />
     <Content Include="app\Owner\owner.component.js" />
     <Content Include="app\Owner\owner.js" />
     <Content Include="app\Owner\owner.service.js" />
@@ -216,12 +216,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="package.json" />
     <Content Include="app\main.js.map" />
     <Content Include="app\Owner\owner.component.js.map" />
     <Content Include="app\Owner\owner.js.map" />
     <Content Include="app\Owner\owner.service.js.map" />
     <Content Include="app\route.js.map" />
-    <Content Include="package.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -274,6 +274,7 @@
     <Content Include="typings.json" />
     <Content Include="tsconfig.json" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -292,16 +293,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app\app.component.ts" />
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
     <TypeScriptCompile Include="app\main.ts" />
-    <TypeScriptCompile Include="app\Owner\owner-form.component.ts" />
     <TypeScriptCompile Include="app\Owner\owner.component.ts" />
     <TypeScriptCompile Include="app\Owner\owner.service.ts" />
     <TypeScriptCompile Include="app\Owner\owner.ts" />
     <TypeScriptCompile Include="app\route.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

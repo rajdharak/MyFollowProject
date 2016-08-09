@@ -28,7 +28,6 @@ namespace MyFollowv1._2.Models
         public string FoundedYear { get; set; }
 
         public string WebsiteUrl { get; set; }
-
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

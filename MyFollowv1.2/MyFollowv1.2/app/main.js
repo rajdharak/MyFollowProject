@@ -1,7 +1,7 @@
 "use strict";
 var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
-var route_1 = require('./route');
-var app_component_1 = require('./app.component');
+var owner_component_1 = require('./Owner/owner.component');
+//import { appRouterProviders } from './route';
 var http_1 = require('@angular/http');
-platform_browser_dynamic_1.bootstrap(app_component_1.AppComponent, [http_1.HTTP_PROVIDERS, route_1.appRouterProviders]);
+platform_browser_dynamic_1.bootstrap(owner_component_1.OwnerComponent, [http_1.HTTP_PROVIDERS]);
 //# sourceMappingURL=main.js.map

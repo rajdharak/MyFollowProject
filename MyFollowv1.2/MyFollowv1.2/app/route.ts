@@ -1,10 +1,12 @@
 ﻿import { provideRouter, RouterConfig }  from '@angular/router';
-import { OwnerFormComponent }from './Owner/owner-form.component';
+import { OwnerComponent }from './Owner/owner.component';
 const routes: RouterConfig = [{
-    path: "becomeOwner",
-    component: OwnerFormComponent,
+    path: "Users/owner",
+    component: OwnerComponent,
 
 }];
+
+
 export const appRouterProviders = [
     provideRouter(routes)
 ];

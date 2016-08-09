@@ -1,0 +1,57 @@
+﻿@model MyFollowv1._2.Models.Owners
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Owners</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FoundedYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FoundedYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WebsiteUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WebsiteUrl)
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Approve" class="btn btn-default" /> |
+    </div>
+}
+</div>

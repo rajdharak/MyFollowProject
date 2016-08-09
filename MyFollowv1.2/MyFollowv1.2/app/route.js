@@ -1,9 +1,9 @@
 "use strict";
 var router_1 = require('@angular/router');
-var owner_form_component_1 = require('./Owner/owner-form.component');
+var owner_component_1 = require('./Owner/owner.component');
 var routes = [{
-        path: "becomeOwner",
-        component: owner_form_component_1.OwnerFormComponent,
+        path: "Users/owner",
+        component: owner_component_1.OwnerComponent,
     }];
 exports.appRouterProviders = [
     router_1.provideRouter(routes)

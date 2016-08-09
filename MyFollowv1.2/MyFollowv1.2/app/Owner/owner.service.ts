@@ -1,5 +1,5 @@
 ﻿import { Injectable }     from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers} from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
 import { Owner }          from './owner';
 // import 'rxjs/Rx'; // adds ALL RxJS statics & operators to Observable
@@ -27,7 +27,26 @@ export class OwnerService {
     getOwner() {
         return this.http.get(this.ownerUrl)
             .map(response => response.json());
+       
     }
 
+
+    
+    setOwner(owner:Owner) {
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+
+        return this.http
+            .post(this.ownerUrl, JSON.stringify(owner), { headers: headers })
+            .map(res => res.json().data)         
+    }
+    
+    private handleError(error: any) {
+       
+        let errMsg = (error.message) ? error.message :
+            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+        return Observable.throw(errMsg);
+    }
 }
-   

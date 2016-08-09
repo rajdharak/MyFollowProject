@@ -36,44 +36,8 @@ namespace MyFollowv1._2.Controllers
 
             return Ok(owners);
         }
-
-        // PUT: api/Owners/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutOwners(int id, Owners owners)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != owners.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(owners).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OwnersExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
         // POST: api/Owners
-        [ResponseType(typeof(Owners))]
+        [HttpPost]
         public IHttpActionResult PostOwners(Owners owners)
         {
             if (!ModelState.IsValid)
@@ -83,25 +47,11 @@ namespace MyFollowv1._2.Controllers
 
             db.Owners.Add(owners);
             db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = owners.Id }, owners);
-        }
-
-        // DELETE: api/Owners/5
-        [ResponseType(typeof(Owners))]
-        public IHttpActionResult DeleteOwners(int id)
-        {
-            Owners owners = db.Owners.Find(id);
-            if (owners == null)
-            {
-                return NotFound();
-            }
-
-            db.Owners.Remove(owners);
-            db.SaveChanges();
-
             return Ok(owners);
+            //return CreatedAtRoute("DefaultApi", new { id = owners.Id }, owners);
         }
+
+        
 
         protected override void Dispose(bool disposing)
         {
