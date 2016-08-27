@@ -1,0 +1,8 @@
+﻿
+    <form (ngSubmit)="onSubmit(productMedia)" role="form" #AddForm="ngForm">
+        <input (change)="PicUpload($event)" class="btn-file" type="file" #Data="ngForm" [(ngModel)]="productMedia.Data" ngControl="Data" id="Data" accept="image/*" />
+        <br />
+        <input type="submit" value="Add" />
+    </form>
+
+

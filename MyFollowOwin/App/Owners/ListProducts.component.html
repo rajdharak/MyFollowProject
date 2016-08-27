@@ -1,0 +1,42 @@
+﻿<h1> Your added products</h1>
+<br/>
+<div class='table'>
+    <table class='table-responsive'>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>HomepageUrl</th>
+            <th>PlayStoreUrl</th>
+            <th>AppStoreUrl</th>
+            <th>Delete/Edit/Update</th>
+        </tr>
+        <tr *ngFor='let product of products'>
+            <td>
+                {{product.Name}}
+            </td>
+            <td>
+                {{product.Description}}
+            </td>
+            <td>
+                {{product.HomepageUrl}}
+            </td>
+            <td>
+                {{product.PlayStoreUrl}}
+            </td>
+            <td>
+                {{product.AppStoreUrl}}
+            </td>
+
+            <td>
+                <button class="btn btn-danger" (click)="deleteProduct(product.Id)">Delete</button>
+                <a class="btn btn-info" [routerLink]="['/edit',product.Id]">Edit</a>
+                <a class="btn btn-info" [routerLink]="['/update',product.Id]">Update</a>
+                <!--<button class="btn btn-info" (click)="clickedToUpdate(product.Id)">Update</button>-->
+                <br />
+            </td>
+        </tr>
+    </table>
+</div>
+<br/>
+<!--<edit-product [productid]="productid" *ngIf="ClickToEdit"></edit-product>-->
+<update-product [productid]="productid" *ngIf="ClickToUpdate"></update-product>

@@ -1,0 +1,18 @@
+﻿
+<h1>Edit Product</h1>
+<form  (ngSubmit)="onSubmit(product)" role="form" #AddForm="ngForm">
+    Name:<input #Name="ngForm" type="text" class="form-control" [(ngModel)]="product.Name" ngControl="Name" /><br />
+    Description:<input #Description="ngForm" type="text" class="form-control" [(ngModel)]="product.Description" ngControl="Description" /><br />
+    HomePageUrl:<input #HomePageUrl="ngForm" type="text" class="form-control" [(ngModel)]="product.HomepageUrl" ngControl="HomePageUrl" /><br />
+    PlayStoreUrl:<input #PlayStoreUrl="ngForm" type="text" class="form-control" [(ngModel)]="product.PlayStoreUrl" ngControl="PlayStoreUrl" /><br />
+    AppStoreUrl:<input #AppStoreUrl="ngForm" type="text" class="form-control" [(ngModel)]="product.AppStoreUrl" ngControl="AppStoreUrl" /><br />
+    ProductPlatform:<select #ProductPlatform="ngForm" class="form-control" [(ngModel)]="product.ProductPlatform" ngControl="ProductPlatform" id="ProductPlatform">
+        <option value="Mobile">Mobile</option>
+        <option value="Web">Web</option>
+        <option value="IOT">IOT</option>
+    </select><br />
+    <input class="btn btn-success" type="submit" value="Submit" />
+</form>
+<br />
+
+
