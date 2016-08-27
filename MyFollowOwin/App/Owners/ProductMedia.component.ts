@@ -1,12 +1,14 @@
-﻿import { Component, Injectable, OnInit, Input,Output,EventEmitter} from '@angular/core';
+﻿import { Component, Injectable, OnInit, Input,Output,EventEmitter,} from '@angular/core';
 import {ProductMedia} from './../Shared/Models';
 import {Service} from './../Shared/Service';
+//import {FileSelectDirective, FileDropDirective, FileUploader} from 'ng2-file-upload-modal/ng2-file-upload-modal';
 
 
 @Component({
     selector: 'media-form',
     providers: [Service],
-    templateUrl: 'App/Owners/ProductMedia.component.html'
+    templateUrl: 'App/Owners/ProductMedia.component.html',
+    //directives: [ng2FileUploader]
 })
 
 export class ProductMedias implements OnInit {

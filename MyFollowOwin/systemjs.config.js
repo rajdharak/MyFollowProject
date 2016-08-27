@@ -45,4 +45,12 @@
     packages: packages
   };
   System.config(config);
+  System.config({
+      defaultJSExtensions: true,
+      map: {
+          'ng2-bs3-modal': 'node_modules/ng2-bs3-modal',
+          'ng2-file-upload': 'node_modules/ng2-file-upload',
+          'ng2-file-upload-modal': 'node_modules/ng2-file-upload-modal'
+      }
+  });
 })(this);
