@@ -13,6 +13,7 @@ using MyFollowOwin.Models;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
+using MyFollowOwin.Controllers;
 
 namespace MyFollowOwin.Api_Controllers
 {
@@ -55,6 +56,8 @@ namespace MyFollowOwin.Api_Controllers
             products.ModifiedDate = DateTime.Today;
             db.Products.Add(products);
             db.SaveChanges();
+            OwnerProductMappingsController addedproducts = new OwnerProductMappingsController();
+            addedproducts.PostOwnerProductMapping(products.Id);
             return CreatedAtRoute("DefaultApi", new { id = products.Id }, products);
         }
         // PUT: api/Products/5

@@ -2,9 +2,13 @@
 <h1>Update Product</h1>
 <br/>
 <form (ngSubmit)="onSubmit(productUpdate)" role="form" #AddForm="ngForm">
-    Title:<input #Title="ngForm" class="form-control" type="text" [(ngModel)]="productUpdate.Title" ngControl="Title" /><br />
-    Details:<input #Details="ngForm" class="form-control" type="text" [(ngModel)]="productUpdate.Details" ngControl="Details" /><br />
+
+    Title:<input #Title="ngForm" class="form-control" type="text" [(ngModel)]="productUpdate.Title" required ngControl="Title" /><br />
+
+    Details:<input #Details="ngForm" class="form-control" type="text" [(ngModel)]="productUpdate.Details" required ngControl="Details" /><br />
+
     AddMedia:<media-form [productmedia]="productmedia" (sendProductMediaid)="sendProductMediaid($event)"></media-form><br/>
+
     <input type="submit" value="Submit" />
 </form>
 <br />

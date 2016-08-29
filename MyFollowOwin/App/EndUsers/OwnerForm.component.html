@@ -1,9 +1,14 @@
 ﻿
 <form (ngSubmit)="onSubmit(owner)" role="form" #AddForm="ngForm">
-    Company Name:<input #CompanyName="ngForm" type="text" class = "form-control" [(ngModel)]="owner.CompanyName" ngControl="CompanyName" /><br />
-    Description:<input #Description="ngForm" type="text" class = "form-control" [(ngModel)]="owner.Description" ngControl="Description" /><br />
-    FoundedYear:<input #FoundedYear="ngForm" type="text" class = "form-control" [(ngModel)]="owner.FoundedYear" ngControl="FoundedYear" /><br />
-    WebsiteUrl:<input #WebsiteUrl="ngForm" type="text" class = "form-control" [(ngModel)]="owner.WebsiteUrl" ngControl="WebsiteUrl" /><br />
+
+    Company Name:<input #CompanyName="ngForm" type="text" class = "form-control" [(ngModel)]="owner.CompanyName" required ngControl="CompanyName" /><br />
+
+    Description:<input #Description="ngForm" type="text" class = "form-control" [(ngModel)]="owner.Description" required ngControl="Description" /><br />
+
+    FoundedYear:<input #FoundedYear="ngForm" type="text" class = "form-control" [(ngModel)]="owner.FoundedYear" required ngControl="FoundedYear" /><br />
+
+    WebsiteUrl:<input #WebsiteUrl="ngForm" type="text" class = "form-control" [(ngModel)]="owner.WebsiteUrl" required ngControl="WebsiteUrl" /><br />
+
     <input class="btn btn-success" type="submit" value="Submit" />
     <a class="btn btn-success" [routerLink]="['/productlist']">Back To ProductList</a>
 </form>

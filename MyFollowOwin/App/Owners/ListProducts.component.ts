@@ -44,7 +44,7 @@ export class AddedProducts implements OnInit {
    
     getProducts()
     {
-        var displayOwner = this.productservice.getProduct()
+        var displayOwner = this.productservice.getOwnersProduct()
             .subscribe((products) => {
                 this.products = products
             }, err => {

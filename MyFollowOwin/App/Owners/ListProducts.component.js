@@ -37,7 +37,7 @@ var AddedProducts = (function () {
     };
     AddedProducts.prototype.getProducts = function () {
         var _this = this;
-        var displayOwner = this.productservice.getProduct()
+        var displayOwner = this.productservice.getOwnersProduct()
             .subscribe(function (products) {
             _this.products = products;
         }, function (err) {

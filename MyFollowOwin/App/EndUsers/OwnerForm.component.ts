@@ -28,20 +28,16 @@ export class OwnerComponent implements OnInit {
              
    }  
    cleanUp() {
-       this.owner = null;
+       this.owner.CompanyName = null;
+       this.owner.Description = null;
+       this.owner.FoundedYear = null;
+       this.owner.WebsiteUrl = null;
 
    }
   
     onSubmit(owner: OwnerModel) {
-        console.log(owner.CompanyName);
-        console.log(owner.Description);
-        console.log(owner.FoundedYear);
-        console.log(owner.WebsiteUrl);
-        console.log(owner.OwnerStates)       
         this.AddOwnerData();
         this.cleanUp();
-
-        alert("Your Request is Submited...!!");
    }
   
     AddOwnerData() {

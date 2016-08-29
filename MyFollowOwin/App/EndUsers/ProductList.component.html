@@ -30,8 +30,8 @@
             </td>
          
             <td >
-                    <button *ngIf="!product.Check"  class="btn btn-success" (click)="followProduct(product.Id)">Follow</button>  
-                    <button *ngIf="product.Check" class="btn btn-danger" (click)="unfollowProduct(product.Id)">UnFollow</button>            
+                    <button [hidden]="isHidden[product.Id]"  class="btn btn-success" (click)="followProduct(product.Id)">Follow</button>  
+                    <!--<button  class="btn btn-danger" (click)="unfollowProduct(product.Id)">UnFollow</button>-->            
             </td>
            
         </tr>

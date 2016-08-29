@@ -74,8 +74,8 @@ var Service = (function () {
         });
         return this.http.post(this.followUrl + productobj.ProductId, JSON.stringify(productobj.ProductId), { headers: headers }).map(function (res) { return res.json(); });
     };
-    Service.prototype.unfollowProduct = function (productobj) {
-        return this.http.delete(this.followUrl + productobj.ProductId);
+    Service.prototype.unfollowProduct = function (productId) {
+        return this.http.delete(this.followUrl + productId);
     };
     Service.prototype.getFollowBit = function () {
         return this.http.get(this.followUrl)

@@ -27,17 +27,14 @@ var OwnerComponent = (function () {
     OwnerComponent.prototype.ngOnInit = function () {
     };
     OwnerComponent.prototype.cleanUp = function () {
-        this.owner = null;
+        this.owner.CompanyName = null;
+        this.owner.Description = null;
+        this.owner.FoundedYear = null;
+        this.owner.WebsiteUrl = null;
     };
     OwnerComponent.prototype.onSubmit = function (owner) {
-        console.log(owner.CompanyName);
-        console.log(owner.Description);
-        console.log(owner.FoundedYear);
-        console.log(owner.WebsiteUrl);
-        console.log(owner.OwnerStates);
         this.AddOwnerData();
         this.cleanUp();
-        alert("Your Request is Submited...!!");
     };
     OwnerComponent.prototype.AddOwnerData = function () {
         var _this = this;

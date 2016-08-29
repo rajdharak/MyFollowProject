@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var Models_1 = require('./../Shared/Models');
 var Service_1 = require('./../Shared/Service');
-//import {FileSelectDirective, FileDropDirective, FileUploader} from 'ng2-file-upload-modal/ng2-file-upload-modal';
+//import {FILE_UPLOAD_DIRECTIVES, FileUploader} from '../../../ng2-file-upload';
 var ProductMedias = (function () {
     function ProductMedias(productservice) {
         this.productservice = productservice;

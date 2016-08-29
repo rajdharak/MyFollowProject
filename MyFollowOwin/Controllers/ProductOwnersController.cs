@@ -47,7 +47,6 @@ namespace MyFollowOwin.Api_Controllers
             productOwners.UserId = user.Id;
             productOwners.CreateDate = DateTime.Today;
             productOwners.ModifiedDate = DateTime.Today;
-
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

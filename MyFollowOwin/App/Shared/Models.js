@@ -20,7 +20,7 @@ var OwnerModel = (function () {
 exports.OwnerModel = OwnerModel;
 var Product = (function () {
     function Product() {
-        this.Check = true;
+        this.Check = false;
     }
     return Product;
 }());

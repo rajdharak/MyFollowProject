@@ -1,7 +1,8 @@
 ﻿import { Component, Injectable, OnInit, Input,Output,EventEmitter,} from '@angular/core';
 import {ProductMedia} from './../Shared/Models';
 import {Service} from './../Shared/Service';
-//import {FileSelectDirective, FileDropDirective, FileUploader} from 'ng2-file-upload-modal/ng2-file-upload-modal';
+//import {FILE_UPLOAD_DIRECTIVES, FileUploader} from '../../../ng2-file-upload';
+
 
 
 @Component({

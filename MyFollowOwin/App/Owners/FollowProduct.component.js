@@ -51,7 +51,7 @@ var FollowProduct = (function () {
     };
     FollowProduct.prototype.UnFollowProduct = function () {
         var _this = this;
-        this.productservice.unfollowProduct(this.product)
+        this.productservice.unfollowProduct(this.product.ProductId)
             .subscribe(function (response) {
             console.log("Success Response" + response);
         }, function (error) { console.log("Error happened" + error); }, function () {

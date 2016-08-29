@@ -10,17 +10,28 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MyFolllowOwin.Models;
 using MyFollowOwin.Models;
+using Microsoft.AspNet.Identity;
 
 namespace MyFollowOwin.Controllers
 {
+    
+    [RoutePrefix("api/[controller]")]
     public class OwnerProductMappingsController : ApiController
     {
+        
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/OwnerProductMappings
-        public IQueryable<OwnerProductMapping> GetAddedProducts()
+        //GET: api/OwnerProductMappings
+       [HttpGet]
+       [Route]
+       [ResponseType(typeof(OwnerProductMapping))]
+        public Products[] GetAddedProducts()
         {
-            return db.AddedProducts;
+            var id = User.Identity.GetUserId();
+            ApplicationUser user = db.Users.Find(id);
+            var ownersId = db.Owners.FirstOrDefault(element => element.UserId == user.Id).Id;
+            var products = db.AddedProducts.Where(product => product.OwnerId == ownersId).Select(product => product.Products).ToArray();    
+            return products;
         }
 
         // GET: api/OwnerProductMappings/5
@@ -72,14 +83,24 @@ namespace MyFollowOwin.Controllers
         }
 
         // POST: api/OwnerProductMappings
+        [HttpPost]
+        [Route]
         [ResponseType(typeof(OwnerProductMapping))]
-        public IHttpActionResult PostOwnerProductMapping(OwnerProductMapping ownerProductMapping)
+        public IHttpActionResult PostOwnerProductMapping(int productId)
         {
+            OwnerProductMapping ownerProductMapping = new OwnerProductMapping();
+            var id = User.Identity.GetUserId();
+            ApplicationUser user = db.Users.Find(id);
+            var ownersId = db.Owners.FirstOrDefault(element => element.UserId == user.Id).Id;
+            ownerProductMapping.OwnerId = ownersId;
+            ownerProductMapping.ProductId = productId;
+            ownerProductMapping.CreateDate = DateTime.Today;
+            ownerProductMapping.ModifiedDate = DateTime.Today;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
+           
             db.AddedProducts.Add(ownerProductMapping);
             db.SaveChanges();
 

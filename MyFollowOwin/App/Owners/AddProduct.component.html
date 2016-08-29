@@ -1,22 +1,22 @@
 ﻿<!--<button class="btn btn-info" (click)="click()">Add Product</button>-->
 <form  (ngSubmit)="onSubmit(product)" role="form" #AddForm="ngForm">
     <div >
-        Name:<input #Name="ngForm" type="text" class="form-control" [(ngModel)]="product.Name" ngControl="Name" /><br />
+        Name:<input #Name="ngForm" type="text" class="form-control" [(ngModel)]="product.Name" required ngControl="Name" /><br />
     </div>
     <div >
-        Description:<input #Description="ngForm" class="form-control" type="text" [(ngModel)]="product.Description" ngControl="Description" /><br />
+        Description:<input #Description="ngForm" class="form-control" type="text" [(ngModel)]="product.Description" required ngControl="Description" /><br />
     </div>
     <div >
-        HomePageUrl:<input #HomePageUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.HomepageUrl" ngControl="HomePageUrl" /><br />
+        HomePageUrl:<input #HomePageUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.HomepageUrl" required ngControl="HomePageUrl" /><br />
     </div>
     <div >
-        PlayStoreUrl:<input #PlayStoreUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.PlayStoreUrl" ngControl="PlayStoreUrl" /><br />
+        PlayStoreUrl:<input #PlayStoreUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.PlayStoreUrl" required ngControl="PlayStoreUrl" /><br />
     </div>
     <div>
-        AppStoreUrl:<input #AppStoreUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.AppStoreUrl" ngControl="AppStoreUrl" /><br />
+        AppStoreUrl:<input #AppStoreUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.AppStoreUrl" required ngControl="AppStoreUrl" /><br />
     </div>
     <div>
-        ProductPlatform:<select #ProductPlatform="ngForm" [(ngModel)]="product.ProductPlatform" class="form-control" ngControl="ProductPlatform" id="ProductPlatform">
+        ProductPlatform:<select #ProductPlatform="ngForm" [(ngModel)]="product.ProductPlatform" class="form-control" required ngControl="ProductPlatform" id="ProductPlatform">
         <option value="Mobile">Mobile</option>
         <option value="Web">Web</option>
         <option value="IOT">IOT</option>

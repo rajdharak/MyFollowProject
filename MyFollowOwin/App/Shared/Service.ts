@@ -77,8 +77,8 @@ export class Service {
       
         return this.http.post(this.followUrl + productobj.ProductId, JSON.stringify(productobj.ProductId), { headers: headers }).map(res => res.json());
     }
-    unfollowProduct(productobj: Product) {
-        return this.http.delete(this.followUrl + productobj.ProductId);
+    unfollowProduct(productId:number) {
+        return this.http.delete(this.followUrl + productId);
     }
     getFollowBit() {
         return this.http.get(this.followUrl)

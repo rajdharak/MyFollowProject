@@ -20,23 +20,20 @@ namespace MyFollowOwin.Api_Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/Followers
-        public IQueryable<Followers> GetFollowers()
-        {
-            return db.Followers;
-        }
-
+        [HttpGet]
+        [Route]
         // GET: api/Followers/5
         [ResponseType(typeof(Followers))]
-        public IHttpActionResult GetFollowers(int id)
+        public IHttpActionResult GetFollowers()
         {
-            Followers followers = db.Followers.Find(id);
-            if (followers == null)
+            var user = User.Identity.GetUserId();
+            var record = db.Followers.Where(e => e.UserId == user);
+
+            if (record == null)
             {
                 return NotFound();
             }
-
-            return Ok(followers);
+            return Ok(record);
         }
 
         // PUT: api/Followers/5
@@ -74,31 +71,30 @@ namespace MyFollowOwin.Api_Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Followers
+        // POST: api/Followers/S
         [ResponseType(typeof(Followers))]
         [Route]
         [HttpPost]
-        public IHttpActionResult PostFollowers([FromBody] int Productid)
+        public IHttpActionResult PostFollowers([FromBody]int productId)
         {
             Followers followers = new Followers();
             var id = User.Identity.GetUserId();
-            ApplicationUser user = db.Users.Find(id);
-          
+            ApplicationUser user = new ApplicationUser();
+            user = db.Users.Find(id);
+            if (user.Id != null)
             {
                 followers.UserId = user.Id;
             }
-           
-           
+
+            followers.ProductId = productId;
+            followers.CreateDate = DateTime.Today;
+            followers.ModifiedDate = DateTime.Today;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            followers.ProductId = Productid;
-            followers.CreateDate = DateTime.Today;
-            followers.ModifiedDate = DateTime.Today;
-       
-                if (user != null)
-                db.Followers.Add(followers);
+            db.Followers.Add(followers);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = followers.Id }, followers);

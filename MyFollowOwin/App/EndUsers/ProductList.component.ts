@@ -12,8 +12,6 @@ export class ProductList implements OnInit {
     products: Array<Product>;
     errorMessage: string;
     product: Product;
- 
-    //public Check: boolean = false;
     constructor(private productservice: Service) {
         this.products = new Array<Product>();
         this.product = new Product();
@@ -33,13 +31,13 @@ export class ProductList implements OnInit {
     
     followProduct(productId: number) {
         this.product.ProductId = productId;
-        this.product.Check= false;
+        //this.product.Check= false;
         this.FollowProduct();
     }
 
     unfollowProduct(productId: number) {
         this.product.ProductId = productId;
-        this.product.Check = true;
+        //this.product.Check = true;
         this.UnFollowProduct();
     }
 
@@ -56,7 +54,7 @@ export class ProductList implements OnInit {
             });
     }
     UnFollowProduct() {
-        this.productservice.unfollowProduct(this.product)
+        this.productservice.unfollowProduct(this.product.ProductId)
             .subscribe(function (response) {
                 console.log("Success Response" + response)
             },

@@ -12,7 +12,6 @@ var core_1 = require('@angular/core');
 var Service_1 = require('./../Shared/Service');
 var Models_1 = require('./../Shared/Models');
 var ProductList = (function () {
-    //public Check: boolean = false;
     function ProductList(productservice) {
         this.productservice = productservice;
         this.products = new Array();
@@ -32,12 +31,12 @@ var ProductList = (function () {
     };
     ProductList.prototype.followProduct = function (productId) {
         this.product.ProductId = productId;
-        this.product.Check = false;
+        //this.product.Check= false;
         this.FollowProduct();
     };
     ProductList.prototype.unfollowProduct = function (productId) {
         this.product.ProductId = productId;
-        this.product.Check = true;
+        //this.product.Check = true;
         this.UnFollowProduct();
     };
     ProductList.prototype.FollowProduct = function () {
@@ -51,7 +50,7 @@ var ProductList = (function () {
     };
     ProductList.prototype.UnFollowProduct = function () {
         var _this = this;
-        this.productservice.unfollowProduct(this.product)
+        this.productservice.unfollowProduct(this.product.ProductId)
             .subscribe(function (response) {
             console.log("Success Response" + response);
         }, function (error) { console.log("Error happened" + error); }, function () {

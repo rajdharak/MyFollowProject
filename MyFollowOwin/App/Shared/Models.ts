@@ -17,8 +17,7 @@ export class Product {
     public PlayStoreUrl: string;
     public AppStoreUrl: string;
     public ProductPlatform: Platform;
-    public Check:boolean=true;
-
+    public Check: boolean = false;
 }
 
 export class ProductUpdate {

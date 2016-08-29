@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import {Service} from './../Shared/Service';
-import {Product} from './../Shared/Models';
+import {Product, Platform} from './../Shared/Models';
 @Component({
     selector: 'product-list',
     providers: [Service],
@@ -12,7 +12,7 @@ export class FollowProduct implements OnInit {
     products: Array<Product>;
     errorMessage: string;
     product: Product;
-
+    produtplatform: Platform;
     //public Check: boolean = false;
     constructor(private productservice: Service) {
         this.products = new Array<Product>();
@@ -56,7 +56,7 @@ export class FollowProduct implements OnInit {
             });
     }
     UnFollowProduct() {
-        this.productservice.unfollowProduct(this.product)
+        this.productservice.unfollowProduct(this.product.ProductId)
             .subscribe(function (response) {
                 console.log("Success Response" + response)
             },
