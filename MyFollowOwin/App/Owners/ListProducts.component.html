@@ -29,14 +29,11 @@
 
             <td>
                 <button class="btn btn-danger" (click)="deleteProduct(product.Id)">Delete</button>
-                <a class="btn btn-info" [routerLink]="['/edit',product.Id]">Edit</a>
-                <a class="btn btn-info" [routerLink]="['/update',product.Id]">Update</a>
-                <!--<button class="btn btn-info" (click)="clickedToUpdate(product.Id)">Update</button>-->
+                <a class="btn btn-success" [routerLink]="['/edit',product.Id]">Edit</a>
+                <a class="btn btn-success" [routerLink]="['/update',product.Id]">Update</a>
                 <br />
             </td>
         </tr>
     </table>
 </div>
 <br/>
-<!--<edit-product [productid]="productid" *ngIf="ClickToEdit"></edit-product>-->
-<update-product [productid]="productid" *ngIf="ClickToUpdate"></update-product>
