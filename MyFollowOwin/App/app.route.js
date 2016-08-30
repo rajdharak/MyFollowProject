@@ -14,7 +14,7 @@ var routes = [
     },
     {
         path: 'listproduct',
-        component: ListProducts_component_1.AddedProducts
+        component: ListProducts_component_1.ListProductsComponent
     },
     {
         path: 'edit/:id',
@@ -26,7 +26,7 @@ var routes = [
     },
     {
         path: 'becomowner',
-        component: OwnerForm_component_1.OwnerComponent
+        component: OwnerForm_component_1.OwnerFormComponent
     },
     {
         path: 'productlist',

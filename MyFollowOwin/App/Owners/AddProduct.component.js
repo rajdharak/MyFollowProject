@@ -53,7 +53,7 @@ var AddProduct = (function () {
         core_1.Component({
             selector: 'add-product',
             providers: [Service_1.Service],
-            directives: [ListProducts_component_1.AddedProducts, router_1.ROUTER_DIRECTIVES],
+            directives: [ListProducts_component_1.ListProductsComponent, router_1.ROUTER_DIRECTIVES],
             templateUrl: 'App/Owners/AddProduct.component.html'
         }), 
         __metadata('design:paramtypes', [Service_1.Service])

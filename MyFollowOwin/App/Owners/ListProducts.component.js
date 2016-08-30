@@ -14,8 +14,8 @@ var Models_1 = require('./../Shared/Models');
 var EditProduct_component_1 = require('./../Owners/EditProduct.component');
 var UpdateProduct_component_1 = require('./../Owners/UpdateProduct.component');
 var router_1 = require('@angular/router');
-var AddedProducts = (function () {
-    function AddedProducts(productservice, router) {
+var ListProductsComponent = (function () {
+    function ListProductsComponent(productservice, router) {
         this.productservice = productservice;
         this.router = router;
         this.ClickToEdit = false;
@@ -23,19 +23,19 @@ var AddedProducts = (function () {
         this.products = new Array();
         this.product = new Models_1.Product();
     }
-    AddedProducts.prototype.ngOnInit = function () {
+    ListProductsComponent.prototype.ngOnInit = function () {
         this.getProducts();
     };
-    AddedProducts.prototype.clickedToEdit = function (productid) {
+    ListProductsComponent.prototype.clickedToEdit = function (productid) {
         console.log(productid);
         this.productid = productid;
         this.ClickToEdit = true;
     };
-    AddedProducts.prototype.clickedToUpdate = function (productid) {
+    ListProductsComponent.prototype.clickedToUpdate = function (productid) {
         this.productid = productid;
         this.ClickToUpdate = true;
     };
-    AddedProducts.prototype.getProducts = function () {
+    ListProductsComponent.prototype.getProducts = function () {
         var _this = this;
         var displayOwner = this.productservice.getOwnersProduct()
             .subscribe(function (products) {
@@ -44,11 +44,11 @@ var AddedProducts = (function () {
             _this.errorMessage = err;
         });
     };
-    AddedProducts.prototype.deleteProduct = function (productid) {
+    ListProductsComponent.prototype.deleteProduct = function (productid) {
         this.product.Id = productid;
         this.DeleteProduct();
     };
-    AddedProducts.prototype.DeleteProduct = function () {
+    ListProductsComponent.prototype.DeleteProduct = function () {
         var _this = this;
         this.productservice.deleteProduct(this.product)
             .subscribe(function (response) {
@@ -57,7 +57,7 @@ var AddedProducts = (function () {
             _this.getProducts();
         });
     };
-    AddedProducts.prototype.cleanUp = function () {
+    ListProductsComponent.prototype.cleanUp = function () {
         this.product.AppStoreUrl = null;
         this.product.Description = null;
         this.product.HomepageUrl = null;
@@ -68,8 +68,8 @@ var AddedProducts = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Models_1.Product)
-    ], AddedProducts.prototype, "Product", void 0);
-    AddedProducts = __decorate([
+    ], ListProductsComponent.prototype, "Product", void 0);
+    ListProductsComponent = __decorate([
         core_1.Component({
             selector: 'added-products',
             providers: [Service_1.Service],
@@ -77,8 +77,8 @@ var AddedProducts = (function () {
             templateUrl: 'App/Owners/ListProducts.component.html'
         }), 
         __metadata('design:paramtypes', [Service_1.Service, router_1.Router])
-    ], AddedProducts);
-    return AddedProducts;
+    ], ListProductsComponent);
+    return ListProductsComponent;
 }());
-exports.AddedProducts = AddedProducts;
+exports.ListProductsComponent = ListProductsComponent;
 //# sourceMappingURL=ListProducts.component.js.map

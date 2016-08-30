@@ -4,7 +4,7 @@ import {Product, Platform, Followers} from './../Shared/Models';
 
 
 @Component({
-    selector: 'follow-product',
+    selector: 'product-list',
     providers: [Service],
     templateUrl: 'App/EndUsers/ProductList.component.html'
 })

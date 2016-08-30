@@ -11,16 +11,15 @@ var OwnerStates = exports.OwnerStates;
     Platform[Platform["IOT"] = 2] = "IOT";
 })(exports.Platform || (exports.Platform = {}));
 var Platform = exports.Platform;
-var OwnerModel = (function () {
-    function OwnerModel() {
+var Owner = (function () {
+    function Owner() {
         this.OwnerStates = OwnerStates.Pending;
     }
-    return OwnerModel;
+    return Owner;
 }());
-exports.OwnerModel = OwnerModel;
+exports.Owner = Owner;
 var Product = (function () {
     function Product() {
-        this.Check = false;
     }
     return Product;
 }());

@@ -13,30 +13,30 @@ var Models_1 = require('./../Shared/Models');
 var Service_1 = require('./../Shared/Service');
 var ProductList_component_1 = require('./../EndUsers/ProductList.component');
 var router_1 = require('@angular/router');
-var OwnerComponent = (function () {
-    function OwnerComponent(ownerservice, route) {
+var OwnerFormComponent = (function () {
+    function OwnerFormComponent(ownerservice, route) {
         this.ownerservice = ownerservice;
         this.route = route;
         this.Click = false;
         this.owners = new Array();
-        this.owner = new Models_1.OwnerModel();
+        this.owner = new Models_1.Owner();
     }
-    OwnerComponent.prototype.clicked = function () {
+    OwnerFormComponent.prototype.clicked = function () {
         this.Click = true;
     };
-    OwnerComponent.prototype.ngOnInit = function () {
+    OwnerFormComponent.prototype.ngOnInit = function () {
     };
-    OwnerComponent.prototype.cleanUp = function () {
+    OwnerFormComponent.prototype.cleanUp = function () {
         this.owner.CompanyName = null;
         this.owner.Description = null;
         this.owner.FoundedYear = null;
         this.owner.WebsiteUrl = null;
     };
-    OwnerComponent.prototype.onSubmit = function (owner) {
+    OwnerFormComponent.prototype.onSubmit = function (owner) {
         this.AddOwnerData();
         this.cleanUp();
     };
-    OwnerComponent.prototype.AddOwnerData = function () {
+    OwnerFormComponent.prototype.AddOwnerData = function () {
         var _this = this;
         this.ownerservice.addOwner(this.owner)
             .subscribe(function (owners) {
@@ -45,7 +45,7 @@ var OwnerComponent = (function () {
             _this.errorMessage = err;
         });
     };
-    OwnerComponent = __decorate([
+    OwnerFormComponent = __decorate([
         core_1.Component({
             selector: 'owner-form',
             providers: [Service_1.Service],
@@ -53,8 +53,8 @@ var OwnerComponent = (function () {
             templateUrl: 'App/EndUsers/OwnerForm.component.html'
         }), 
         __metadata('design:paramtypes', [Service_1.Service, router_1.Router])
-    ], OwnerComponent);
-    return OwnerComponent;
+    ], OwnerFormComponent);
+    return OwnerFormComponent;
 }());
-exports.OwnerComponent = OwnerComponent;
+exports.OwnerFormComponent = OwnerFormComponent;
 //# sourceMappingURL=OwnerForm.component.js.map

@@ -1,5 +1,4 @@
 ﻿import { Component, Injectable} from '@angular/core';
-import {OwnerModel} from './../Shared/Models';
 import {Service} from './../Shared/Service';
 import {ProductList} from './../EndUsers/ProductList.component';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';

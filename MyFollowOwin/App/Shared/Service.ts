@@ -1,7 +1,7 @@
 ﻿import { Injectable }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable }     from 'rxjs/Observable';
-import {OwnerModel, Product,ProductUpdate,ProductMedia} from './Models';
+import {Owner, Product,ProductUpdate,ProductMedia} from './Models';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
@@ -22,7 +22,7 @@ export class Service {
     }
 
 
-    updateOwnerState(ownerobj: OwnerModel) {
+    updateOwnerState(ownerobj: Owner) {
         let headers = new Headers({
             'Content-Type': 'application/json',
         });
@@ -32,7 +32,7 @@ export class Service {
         return this.http.get(this.ownersProduct)
             .map(response => response.json());
     }
-    addOwner(ownerobj: OwnerModel) {
+    addOwner(ownerobj: Owner) {
         let headers = new Headers({
             'Content-Type': 'application/json',
         });

@@ -11,16 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var Service_1 = require('./../Shared/Service');
 var Models_1 = require('./../Shared/Models');
-var OwnerRequest = (function () {
-    function OwnerRequest(ownerservice) {
+var OwnerList = (function () {
+    function OwnerList(ownerservice) {
         this.ownerservice = ownerservice;
         this.owners = new Array();
-        this.owner = new Models_1.OwnerModel();
+        this.owner = new Models_1.Owner();
     }
-    OwnerRequest.prototype.ngOnInit = function () {
+    OwnerList.prototype.ngOnInit = function () {
         this.getOwners();
     };
-    OwnerRequest.prototype.getOwners = function () {
+    OwnerList.prototype.getOwners = function () {
         var _this = this;
         this.ownerservice.getOwners()
             .subscribe(function (owners) {
@@ -29,30 +29,30 @@ var OwnerRequest = (function () {
             _this.errorMessage = err;
         });
     };
-    OwnerRequest.prototype.UpdateOwnerData = function () {
+    OwnerList.prototype.UpdateOwnerData = function () {
         var _this = this;
         var ownerupdate = this.ownerservice.updateOwnerState(this.owner)
             .subscribe(function (response) { console.log("Success Response" + response); }, function (error) { console.log("Error happened" + error); }, function () { _this.getOwners(); });
     };
-    OwnerRequest.prototype.Approve = function (ownerId) {
+    OwnerList.prototype.Approve = function (ownerId) {
         this.owner.Id = ownerId;
         this.owner.OwnerStates = Models_1.OwnerStates.Approved;
         this.UpdateOwnerData();
     };
-    OwnerRequest.prototype.Reject = function (ownerId) {
+    OwnerList.prototype.Reject = function (ownerId) {
         this.owner.Id = ownerId;
         this.owner.OwnerStates = Models_1.OwnerStates.Rejected;
         this.UpdateOwnerData();
     };
-    OwnerRequest = __decorate([
+    OwnerList = __decorate([
         core_1.Component({
-            selector: 'owner-requests',
+            selector: 'owner-list',
             providers: [Service_1.Service],
             templateUrl: 'App/Admin/OwnerList.component.html'
         }), 
         __metadata('design:paramtypes', [Service_1.Service])
-    ], OwnerRequest);
-    return OwnerRequest;
+    ], OwnerList);
+    return OwnerList;
 }());
-exports.OwnerRequest = OwnerRequest;
+exports.OwnerList = OwnerList;
 //# sourceMappingURL=OwnerList.component.js.map

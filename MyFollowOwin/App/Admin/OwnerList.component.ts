@@ -1,21 +1,21 @@
 ﻿import {Component,OnInit} from '@angular/core';
 import {Service} from './../Shared/Service';
-import {OwnerModel, OwnerStates} from './../Shared/Models';
+import {Owner, OwnerStates} from './../Shared/Models';
 @Component({
-    selector: 'owner-requests', 
+    selector: 'owner-list', 
     providers: [Service],
     templateUrl:'App/Admin/OwnerList.component.html' 
 })
 
-export class OwnerRequest implements OnInit {
+export class OwnerList implements OnInit {
 
-    owners: Array<OwnerModel>;
+    owners: Array<Owner>;
     errorMessage: string;
-    owner: OwnerModel;
+    owner: Owner;
 
     constructor(private ownerservice: Service) {
-        this.owners = new Array<OwnerModel>();
-        this.owner = new OwnerModel();
+        this.owners = new Array<Owner>();
+        this.owner = new Owner();
     }
 
 

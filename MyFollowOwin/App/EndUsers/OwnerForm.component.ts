@@ -1,5 +1,5 @@
 ﻿import { Component, Injectable, OnInit} from '@angular/core';
-import {OwnerModel} from './../Shared/Models';
+import {Owner} from './../Shared/Models';
 import {Service} from './../Shared/Service';
 import {ProductList} from './../EndUsers/ProductList.component';
 import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
@@ -10,13 +10,13 @@ import { ROUTER_DIRECTIVES, Router, ActivatedRoute } from '@angular/router';
     templateUrl:'App/EndUsers/OwnerForm.component.html'    
 })
 
-export class OwnerComponent implements OnInit {   
-    owners: Array<OwnerModel>;     
+export class OwnerFormComponent implements OnInit {   
+    owners: Array<Owner>;     
     errorMessage: string;      
-    owner: OwnerModel;
+    owner: Owner;
    constructor(private ownerservice: Service,private route:Router) {
-       this.owners = new Array<OwnerModel>();     
-       this.owner = new OwnerModel();
+       this.owners = new Array<Owner>();     
+       this.owner = new Owner();
    }
 
    Click: Boolean = false;
@@ -35,7 +35,7 @@ export class OwnerComponent implements OnInit {
 
    }
   
-    onSubmit(owner: OwnerModel) {
+   onSubmit(owner: Owner) {
         this.AddOwnerData();
         this.cleanUp();
    }

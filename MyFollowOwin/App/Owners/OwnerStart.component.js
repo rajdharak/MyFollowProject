@@ -25,7 +25,7 @@ var OwnerStart = (function () {
         core_1.Component({
             selector: 'product-owner',
             providers: [Service_1.Service],
-            directives: [ListProducts_component_1.AddedProducts, router_1.ROUTER_DIRECTIVES],
+            directives: [ListProducts_component_1.ListProductsComponent, router_1.ROUTER_DIRECTIVES],
             templateUrl: 'App/Owners/OwnerStart.component.html'
         }), 
         __metadata('design:paramtypes', [Service_1.Service])

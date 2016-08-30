@@ -10,7 +10,7 @@ import { ROUTER_DIRECTIVES, Router } from '@angular/router';
     directives: [EditProduct, UpdateProduct, ROUTER_DIRECTIVES],
     templateUrl: 'App/Owners/ListProducts.component.html'
 })
-export class AddedProducts implements OnInit {
+export class ListProductsComponent implements OnInit {
     products: Array<Product>;
     errorMessage: string;
     product: Product;

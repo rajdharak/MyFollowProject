@@ -82,7 +82,7 @@ var ProductList = (function () {
     };
     ProductList = __decorate([
         core_1.Component({
-            selector: 'follow-product',
+            selector: 'product-list',
             providers: [Service_1.Service],
             templateUrl: 'App/EndUsers/ProductList.component.html'
         }), 

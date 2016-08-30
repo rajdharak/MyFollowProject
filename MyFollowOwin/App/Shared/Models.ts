@@ -1,6 +1,6 @@
 ﻿export enum OwnerStates { Pending=0, Approved=1, Rejected=2}
 export enum Platform {Mobile,Web,IOT}
-export class OwnerModel {
+export class Owner {
     public Id: number;
     public CompanyName: string;
     public Description: string;
@@ -17,7 +17,7 @@ export class Product {
     public PlayStoreUrl: string;
     public AppStoreUrl: string;
     public ProductPlatform: Platform;
-    public Check: boolean = false;
+    //public Check: boolean = false;
 }
 
 export class ProductUpdate {
