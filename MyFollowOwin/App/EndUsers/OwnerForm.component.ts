@@ -14,6 +14,7 @@ export class OwnerFormComponent implements OnInit {
     owners: Array<Owner>;     
     errorMessage: string;      
     owner: Owner;
+    active = true;
    constructor(private ownerservice: Service,private route:Router) {
        this.owners = new Array<Owner>();     
        this.owner = new Owner();
@@ -32,7 +33,8 @@ export class OwnerFormComponent implements OnInit {
        this.owner.Description = null;
        this.owner.FoundedYear = null;
        this.owner.WebsiteUrl = null;
-
+       this.active = false;
+       setTimeout(() => this.active = true, 0);
    }
   
    onSubmit(owner: Owner) {

@@ -85,8 +85,6 @@ export class ProductList implements OnInit {
         this.productservice.getFollow()
             .subscribe((followers) => {
                 this.followers = followers;
-
-
             }, err => {
                 this.errorMessage = err;
             },

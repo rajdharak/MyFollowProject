@@ -16,8 +16,8 @@ export class AddProduct implements OnInit {
     products: Array<Product>;
     errorMessage: string;
     product: Product;
-    clicked: boolean = false;
     Product: Product;
+    active = true;
     constructor(private productservice: Service) {
         this.products = new Array<Product>();
         this.product = new Product();
@@ -27,14 +27,6 @@ export class AddProduct implements OnInit {
     {
 
     }
-    click() 
-    {
-        this.clicked = true;
-    }
-    close()
-    {
-        this.clicked = false;
-    }
     cleanUp()
     {
         this.product.AppStoreUrl = null;
@@ -43,6 +35,8 @@ export class AddProduct implements OnInit {
         this.product.Name = null;
         this.product.PlayStoreUrl = null;
         this.product.ProductPlatform = null;
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
     }
     onSubmit(product: Product) {
         this.AddProductData();

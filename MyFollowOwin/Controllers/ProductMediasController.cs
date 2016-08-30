@@ -75,6 +75,7 @@ namespace MyFollowOwin.Api_Controllers
 
         // POST: api/ProductMedias
         [HttpPost]
+        [Route]
         [ResponseType(typeof(ProductMedia))]
         public IHttpActionResult PostProductMedia(ProductMedia productMedia)
         {

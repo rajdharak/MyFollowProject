@@ -29,7 +29,7 @@ export class ProductUpdate {
 }
 export class ProductMedia {
     public ProductMediaId: number;
-    public Data: string;
+    public Data: any;
 }
 export class Followers {
     public ProductId: number;

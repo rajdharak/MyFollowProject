@@ -17,6 +17,7 @@ var OwnerFormComponent = (function () {
     function OwnerFormComponent(ownerservice, route) {
         this.ownerservice = ownerservice;
         this.route = route;
+        this.active = true;
         this.Click = false;
         this.owners = new Array();
         this.owner = new Models_1.Owner();
@@ -27,10 +28,13 @@ var OwnerFormComponent = (function () {
     OwnerFormComponent.prototype.ngOnInit = function () {
     };
     OwnerFormComponent.prototype.cleanUp = function () {
+        var _this = this;
         this.owner.CompanyName = null;
         this.owner.Description = null;
         this.owner.FoundedYear = null;
         this.owner.WebsiteUrl = null;
+        this.active = false;
+        setTimeout(function () { return _this.active = true; }, 0);
     };
     OwnerFormComponent.prototype.onSubmit = function (owner) {
         this.AddOwnerData();

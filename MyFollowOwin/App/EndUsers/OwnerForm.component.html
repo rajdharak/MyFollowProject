@@ -1,14 +1,29 @@
 ﻿
-<form (ngSubmit)="onSubmit(owner)" role="form" #AddForm="ngForm">
-
-    Company Name:<input #CompanyName="ngForm" type="text" class = "form-control" [(ngModel)]="owner.CompanyName" required ngControl="CompanyName" /><br />
-
-    Description:<input #Description="ngForm" type="text" class = "form-control" [(ngModel)]="owner.Description" required ngControl="Description" /><br />
-
-    FoundedYear:<input #FoundedYear="ngForm" type="text" class = "form-control" [(ngModel)]="owner.FoundedYear" required ngControl="FoundedYear" /><br />
-
-    WebsiteUrl:<input #WebsiteUrl="ngForm" type="text" class = "form-control" [(ngModel)]="owner.WebsiteUrl" required ngControl="WebsiteUrl" /><br />
-
+<form *ngIf="active" (ngSubmit)="onSubmit(owner)" role="form" #AddForm="ngForm">
+    <div>
+        Company Name:<input #CompanyName="ngForm" type="text" class = "form-control" [(ngModel)]="owner.CompanyName" required ngControl="CompanyName" /><br />
+        <div [hidden]="CompanyName.valid || CompanyName.pristine" class="alert alert-danger">
+            Name is required field
+        </div>
+    </div>
+    <div>
+        Description:<input #Description="ngForm" type="text" class = "form-control" [(ngModel)]="owner.Description" required ngControl="Description" /><br />
+        <div [hidden]="Description.valid || Description.pristine" class="alert alert-danger">
+            Description is required field
+        </div>
+    </div>
+    <div>
+        FoundedYear:<input #FoundedYear="ngForm" type="number" class="form-control" [(ngModel)]="owner.FoundedYear" required ngControl="FoundedYear" /><br />
+        <div [hidden]="FoundedYear.valid || FoundedYear.pristine" class="alert alert-danger">
+            FoundedYear is required field
+        </div>
+    </div>
+    <div>
+        WebsiteUrl:<input #WebsiteUrl="ngForm" type="text" class="form-control" [(ngModel)]="owner.WebsiteUrl" required pattern="(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})" ngControl="WebsiteUrl" /><br />
+        <div [hidden]="WebsiteUrl.valid || WebsiteUrl.pristine" class="alert alert-danger">
+            WebsiteUrl is in http://www.example.example formate
+        </div>
+    </div>
     <input class="btn btn-success" type="submit" value="Submit" />
     <a class="btn btn-success" [routerLink]="['/productlist']">Back To ProductList</a>
 </form>
