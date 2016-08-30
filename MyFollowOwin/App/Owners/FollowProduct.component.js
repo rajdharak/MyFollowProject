@@ -12,46 +12,68 @@ var core_1 = require('@angular/core');
 var Service_1 = require('./../Shared/Service');
 var Models_1 = require('./../Shared/Models');
 var FollowProduct = (function () {
-    //public Check: boolean = false;
     function FollowProduct(productservice) {
         this.productservice = productservice;
+        this.hidebutton = [];
+        this.productplatform = Models_1.Platform;
+        this.updateclicked = false;
         this.products = new Array();
         this.product = new Models_1.Product();
+        this.follower = new Models_1.Followers();
+        this.followers = new Array();
     }
     FollowProduct.prototype.ngOnInit = function () {
         this.getProducts();
+    };
+    FollowProduct.prototype.Follow = function (productobj) {
+        this.hidebutton[productobj.Id] = true;
+        this.FollowProducts(productobj);
+        this.product = productobj;
+    };
+    FollowProduct.prototype.Unfollow = function (productobj) {
+        this.hidebutton[productobj.Id] = false;
+        this.UnfollowFollowers(productobj.Id);
+    };
+    FollowProduct.prototype.ProductUpdates = function (productobj) {
+        this.updateclicked = true;
+        this.ProductId = productobj.Id;
     };
     FollowProduct.prototype.getProducts = function () {
         var _this = this;
         var displayOwner = this.productservice.getProduct()
             .subscribe(function (products) {
             _this.products = products;
+            _this.getFollowProducts();
         }, function (err) {
             _this.errorMessage = err;
+        }, function () {
         });
     };
-    FollowProduct.prototype.followProduct = function (productId) {
-        this.product.ProductId = productId;
-        this.product.Check = false;
-        this.FollowProduct();
-    };
-    FollowProduct.prototype.unfollowProduct = function (productId) {
-        this.product.ProductId = productId;
-        this.product.Check = true;
-        this.UnFollowProduct();
-    };
-    FollowProduct.prototype.FollowProduct = function () {
+    FollowProduct.prototype.FollowProducts = function (productobj) {
         var _this = this;
-        this.productservice.followProduct(this.product)
-            .subscribe(function (response) {
-            console.log("Success Response" + response);
-        }, function (error) { console.log("Error happened" + error); }, function () {
+        this.productservice.followProduct(productobj)
+            .subscribe(function (response) { console.log("Success Response" + response); }, function (error) { console.log("Error happened" + error); }, function () {
+            _this.getFollowProducts();
             _this.getProducts();
         });
     };
-    FollowProduct.prototype.UnFollowProduct = function () {
+    FollowProduct.prototype.getFollowProducts = function () {
         var _this = this;
-        this.productservice.unfollowProduct(this.product.ProductId)
+        this.productservice.getFollow()
+            .subscribe(function (followers) {
+            _this.followers = followers;
+        }, function (err) {
+            _this.errorMessage = err;
+        }, function () {
+            for (var _i = 0, _a = _this.followers; _i < _a.length; _i++) {
+                var follower = _a[_i];
+                _this.hidebutton[follower.ProductId] = true;
+            }
+        });
+    };
+    FollowProduct.prototype.UnfollowFollowers = function (productId) {
+        var _this = this;
+        this.productservice.unfollowProduct(productId)
             .subscribe(function (response) {
             console.log("Success Response" + response);
         }, function (error) { console.log("Error happened" + error); }, function () {
@@ -60,7 +82,7 @@ var FollowProduct = (function () {
     };
     FollowProduct = __decorate([
         core_1.Component({
-            selector: 'product-list',
+            selector: 'follow-product',
             providers: [Service_1.Service],
             templateUrl: 'App/Owners/FollowProduct.component.html'
         }), 

@@ -53,7 +53,7 @@ export class AddedProducts implements OnInit {
     }
 
     deleteProduct(productid: number) {
-        this.product.ProductId = productid;
+        this.product.Id = productid;
         this.DeleteProduct();
     }
 

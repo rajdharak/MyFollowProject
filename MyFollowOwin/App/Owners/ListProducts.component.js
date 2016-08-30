@@ -45,7 +45,7 @@ var AddedProducts = (function () {
         });
     };
     AddedProducts.prototype.deleteProduct = function (productid) {
-        this.product.ProductId = productid;
+        this.product.Id = productid;
         this.DeleteProduct();
     };
     AddedProducts.prototype.DeleteProduct = function () {

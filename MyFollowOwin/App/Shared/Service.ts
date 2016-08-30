@@ -60,14 +60,14 @@ export class Service {
             'Content-Type': 'application/json',
         });
 
-        return this.http.delete(this.productUrl + productobj.ProductId);
+        return this.http.delete(this.productUrl + productobj.Id);
 
     }
     editProduct(productobj: Product) {
         let headers = new Headers({
             'Content-Type': 'application/json',
         });
-        return this.http.put(this.productUrl + productobj.ProductId, JSON.stringify(productobj), { headers: headers }).map(res => res.json());
+        return this.http.put(this.productUrl + productobj.Id, JSON.stringify(productobj), { headers: headers }).map(res => res.json());
     }
 
     followProduct(productobj: Product) {
@@ -75,12 +75,12 @@ export class Service {
             'Content-Type': 'application/json',
         });
       
-        return this.http.post(this.followUrl + productobj.ProductId, JSON.stringify(productobj.ProductId), { headers: headers }).map(res => res.json());
+        return this.http.post(this.followUrl + productobj.Id, JSON.stringify(productobj.Id), { headers: headers }).map(res => res.json());
     }
     unfollowProduct(productId:number) {
         return this.http.delete(this.followUrl + productId);
     }
-    getFollowBit() {
+    getFollow() {
         return this.http.get(this.followUrl)
             .map(response => response.json());
     }

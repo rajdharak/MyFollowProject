@@ -32,7 +32,7 @@ var EditProduct = (function () {
         this.product.ProductPlatform = null;
     };
     EditProduct.prototype.onSubmit = function (product) {
-        product.ProductId = this.productid;
+        product.Id = this.productid;
         this.EditProductData();
         this.cleanUp();
     };

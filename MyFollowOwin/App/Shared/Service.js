@@ -60,24 +60,24 @@ var Service = (function () {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json',
         });
-        return this.http.delete(this.productUrl + productobj.ProductId);
+        return this.http.delete(this.productUrl + productobj.Id);
     };
     Service.prototype.editProduct = function (productobj) {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json',
         });
-        return this.http.put(this.productUrl + productobj.ProductId, JSON.stringify(productobj), { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.put(this.productUrl + productobj.Id, JSON.stringify(productobj), { headers: headers }).map(function (res) { return res.json(); });
     };
     Service.prototype.followProduct = function (productobj) {
         var headers = new http_1.Headers({
             'Content-Type': 'application/json',
         });
-        return this.http.post(this.followUrl + productobj.ProductId, JSON.stringify(productobj.ProductId), { headers: headers }).map(function (res) { return res.json(); });
+        return this.http.post(this.followUrl + productobj.Id, JSON.stringify(productobj.Id), { headers: headers }).map(function (res) { return res.json(); });
     };
     Service.prototype.unfollowProduct = function (productId) {
         return this.http.delete(this.followUrl + productId);
     };
-    Service.prototype.getFollowBit = function () {
+    Service.prototype.getFollow = function () {
         return this.http.get(this.followUrl)
             .map(function (response) { return response.json(); });
     };

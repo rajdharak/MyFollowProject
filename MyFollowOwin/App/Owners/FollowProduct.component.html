@@ -1,4 +1,4 @@
-﻿<div class='table-bordered'>
+﻿<div class='table-responsive'>
     <table class='table'>
         <tr>
             <th>Name</th>
@@ -17,7 +17,7 @@
                 {{product.Description}}
             </td>
             <td>
-                {{product.HomePageUrl}}
+                {{product.HomepageUrl}}
             </td>
             <td>
                 {{product.PlayStoreUrl}}
@@ -26,14 +26,13 @@
                 {{product.AppStoreUrl}}
             </td>
             <td>
-                {{product.ProductPlatform}}
+                {{productplatform[product.ProductPlatform]}}
             </td>
-
             <td>
-                <button *ngIf="!product.Check" class="btn btn-success" (click)="followProduct(product.Id)">Follow</button>
-                <button *ngIf="!product.Check" class="btn btn-danger" (click)="unfollowProduct(product.Id)">UnFollow</button>            
+                <button  [hidden]="hidebutton[product.Id]"  (click)="Follow(product)">Follow</button>
+                <button  [hidden]="!hidebutton[product.Id]" (click)="Unfollow(product)">Unfollow</button>
             </td>
-
         </tr>
     </table>
 </div>
+<br />

@@ -10,7 +10,7 @@ export class OwnerModel {
 }
 
 export class Product {
-    public ProductId: number;
+    public Id: number;
     public Name: string;
     public Description: string;
     public HomepageUrl: string;
@@ -30,4 +30,8 @@ export class ProductUpdate {
 export class ProductMedia {
     public ProductMediaId: number;
     public Data: string;
+}
+export class Followers {
+    public ProductId: number;
+    public UserId: string;
 }

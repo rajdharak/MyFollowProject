@@ -37,7 +37,7 @@ export class EditProduct implements OnInit
 
     onSubmit(product: Product) {
   
-        product.ProductId = this.productid;
+        product.Id = this.productid;
         this.EditProductData();
         this.cleanUp();
     }

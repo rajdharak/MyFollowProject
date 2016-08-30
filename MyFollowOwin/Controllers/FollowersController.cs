@@ -27,13 +27,13 @@ namespace MyFollowOwin.Api_Controllers
         public IHttpActionResult GetFollowers()
         {
             var user = User.Identity.GetUserId();
-            var record = db.Followers.Where(e => e.UserId == user);
+            var followerId = db.Followers.Where(e => e.UserId == user);
 
-            if (record == null)
+            if (followerId == null)
             {
                 return NotFound();
             }
-            return Ok(record);
+            return Ok(followerId);
         }
 
         // PUT: api/Followers/5

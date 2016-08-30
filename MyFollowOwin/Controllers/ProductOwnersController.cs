@@ -73,8 +73,8 @@ namespace MyFollowOwin.Api_Controllers
                 if (productOwners.OwnerStates == OwnerRequestStates.States.Approved)
                 {
                     var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
-                    ProductOwners po = db.Owners.Find(id);
-                    ApplicationUser user = db.Users.Find(po.UserId);
+                    ProductOwners productOwner = db.Owners.Find(id);
+                    ApplicationUser user = db.Users.Find(productOwner.UserId);
                     UserManager.RemoveFromRole(user.Id, "EndUsers");
                     UserManager.AddToRole(user.Id, "ProductOwners");
                 }

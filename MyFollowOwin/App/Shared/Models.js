@@ -37,4 +37,10 @@ var ProductMedia = (function () {
     return ProductMedia;
 }());
 exports.ProductMedia = ProductMedia;
+var Followers = (function () {
+    function Followers() {
+    }
+    return Followers;
+}());
+exports.Followers = Followers;
 //# sourceMappingURL=Models.js.map
