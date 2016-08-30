@@ -10,6 +10,10 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MyFolllowOwin.Models;
 using MyFollowOwin.Models;
+using System.Web;
+using System.IO;
+using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace MyFollowOwin.Api_Controllers
 {
@@ -77,18 +81,28 @@ namespace MyFollowOwin.Api_Controllers
         [HttpPost]
         [Route]
         [ResponseType(typeof(ProductMedia))]
-        public IHttpActionResult PostProductMedia(ProductMedia productMedia)
+        public IHttpActionResult PostProductMedia()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            productMedia.CreateDate = DateTime.Today;
-            productMedia.ModifiedDate = DateTime.Today;
-            db.ProductMedias.Add(productMedia);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = productMedia.Id }, productMedia);
+           var postedFile = HttpContext.Current.Request.Files["file"];
+           var root = HttpContext.Current.Server.MapPath("~/Media/");
+           Directory.CreateDirectory(root);
+           var newFileName = postedFile.FileName;
+           postedFile.SaveAs(root+newFileName);
+           var mediaUploadRequest = JsonConvert.DeserializeObject<ProductMedia>(HttpContext.Current.Request.Form["data"]);
+            mediaUploadRequest.Data = "Media/" + newFileName;
+           try
+           {
+               if (ModelState.IsValid)
+               {
+                   db.ProductMedias.Add(mediaUploadRequest);
+                   db.SaveChanges();
+               }
+               return Ok(mediaUploadRequest);
+           }
+           catch (Exception)
+           {
+               return BadRequest();
+           }
         }
 
         // DELETE: api/ProductMedias/5

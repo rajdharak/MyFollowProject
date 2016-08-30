@@ -1,18 +1,15 @@
 ﻿import { Component, Injectable, OnInit, Input,Output,EventEmitter,} from '@angular/core';
 import {ProductMedia} from './../Shared/Models';
 import {Service} from './../Shared/Service';
-//import {FILE_UPLOAD_DIRECTIVES, FileUploader} from '../../../ng2-file-upload';
-
-
 
 @Component({
     selector: 'media-form',
     providers: [Service],
-    templateUrl: 'App/Owners/ProductMedia.component.html',
-    //directives: [ng2FileUploader]
+    templateUrl: 'App/Owners/ProductMedia.component.html'
 })
 
 export class ProductMedias implements OnInit {
+
 
     productMedias: Array<ProductMedia>;
     errorMessage: string;
@@ -36,9 +33,8 @@ export class ProductMedias implements OnInit {
     }
     onSubmit(productMedia: ProductMedia) {
         this.sendProductMediaid.emit(productMedia);
-        //console.log(this.sendProductMediaid.map);
         this.AddMedia();
-        
+
     }
     AddMedia() {
         this.productservice.addProductMedia(this.productMedia)
@@ -50,6 +46,7 @@ export class ProductMedias implements OnInit {
             });
     }
     PicUpload(path: any) {
+
         this.productMedia.Data = path.target.value;
     }
 

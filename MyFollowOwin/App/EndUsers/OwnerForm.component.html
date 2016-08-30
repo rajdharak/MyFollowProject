@@ -1,4 +1,4 @@
-﻿
+﻿<h2>Become Owner Form</h2>
 <form *ngIf="active" (ngSubmit)="onSubmit(owner)" role="form" #AddForm="ngForm">
     <div>
         Company Name:<input #CompanyName="ngForm" type="text" class = "form-control" [(ngModel)]="owner.CompanyName" required ngControl="CompanyName" /><br />

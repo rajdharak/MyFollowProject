@@ -1,4 +1,5 @@
 ﻿<!--<button class="btn btn-info" (click)="click()">Add Product</button>-->
+<h2>Add Product Form</h2>
 <form  *ngIf="active" (ngSubmit)="onSubmit(product)" role="form" #AddForm="ngForm">
     <div >
         Name:<input #Name="ngForm" type="text" class="form-control" [(ngModel)]="product.Name" required ngControl="Name" /><br />
