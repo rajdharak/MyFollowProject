@@ -14,6 +14,7 @@ export class ProductMedias implements OnInit
     errorMessage: string;
     productMedia: ProductMedia;
     @Input() productmedia: number;
+    data: string;
     @Output() sendProductMediaid = new EventEmitter<any>();
     constructor(private productservice: Service) {
         this.productMedias = new Array<ProductMedia>();
@@ -46,6 +47,17 @@ export class ProductMedias implements OnInit
     }
     PicUpload(event) {
         var files = event.srcElement.files;
-        console.log(files);
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var reader = new FileReader();
+            reader.onload = this.fileLoad;
+            reader.readAsDataURL(file);
+        }
+       
+    }
+    fileLoad(e)
+    {
+        this.data = e.target.result;
+        console.log(this.data);
     }
 }

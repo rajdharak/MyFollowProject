@@ -45,7 +45,16 @@ var ProductMedias = (function () {
     };
     ProductMedias.prototype.PicUpload = function (event) {
         var files = event.srcElement.files;
-        console.log(files);
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var reader = new FileReader();
+            reader.onload = this.fileLoad;
+            reader.readAsDataURL(file);
+        }
+    };
+    ProductMedias.prototype.fileLoad = function (e) {
+        this.data = e.target.result;
+        console.log(this.data);
     };
     __decorate([
         core_1.Input(), 
