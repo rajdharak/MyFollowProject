@@ -41,7 +41,7 @@ namespace MyFollowOwin.Migrations
             //Adding a default admin user
             var user = new ApplicationUser
             {
-                Email = "admin2@promactinfo.com",
+                Email = "admin@promactinfo.com",
                 EmailConfirmed = true,
                 BirthDate = new DateTime(1994, 09, 28),
                 Name = "Admin",
@@ -57,7 +57,7 @@ namespace MyFollowOwin.Migrations
                 }
             };
             
-            user.UserName = "admin2@promactinfo.com";
+            user.UserName = "admin@promactinfo.com";
             string pwd = "Admin123";
             context.Users.AddOrUpdate(user);
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
