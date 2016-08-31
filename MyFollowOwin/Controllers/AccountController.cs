@@ -11,7 +11,6 @@ using System.Net.Mail;
 
 namespace MyFollowOwin.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
