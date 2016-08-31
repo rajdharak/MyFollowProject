@@ -65,10 +65,6 @@ var ListProductsComponent = (function () {
         this.product.PlayStoreUrl = null;
         this.product.ProductPlatform = null;
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Models_1.Product)
-    ], ListProductsComponent.prototype, "Product", void 0);
     ListProductsComponent = __decorate([
         core_1.Component({
             selector: 'added-products',

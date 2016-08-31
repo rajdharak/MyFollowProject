@@ -15,7 +15,6 @@ export class ListProductsComponent implements OnInit {
     errorMessage: string;
     product: Product;
     productid: number;
-    @Input() Product: Product;
     constructor(private productservice: Service, private router: Router)
     {
         this.products = new Array<Product>();
