@@ -16,7 +16,6 @@ export class AddProduct implements OnInit {
     products: Array<Product>;
     errorMessage: string;
     product: Product;
-    Product: Product;
     active = true;
     constructor(private productservice: Service) {
         this.products = new Array<Product>();
@@ -49,7 +48,6 @@ export class AddProduct implements OnInit {
             },
             function (error) { console.log("Error happened" + error) },
             () => {
-                this.Product=this.product
             });
     }
 }

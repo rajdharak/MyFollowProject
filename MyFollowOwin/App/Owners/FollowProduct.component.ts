@@ -12,7 +12,6 @@ export class FollowProduct implements OnInit {
 
     ProductId: number;
     hidebutton: any[] = [];
-    len: number;
     productplatform = Platform;
     products: Array<Product>;
     errorMessage: string;

@@ -38,12 +38,10 @@ var AddProduct = (function () {
         this.cleanUp();
     };
     AddProduct.prototype.AddProductData = function () {
-        var _this = this;
         this.productservice.addProduct(this.product)
             .subscribe(function (response) {
             console.log("Success Response" + response);
         }, function (error) { console.log("Error happened" + error); }, function () {
-            _this.Product = _this.product;
         });
     };
     AddProduct = __decorate([
