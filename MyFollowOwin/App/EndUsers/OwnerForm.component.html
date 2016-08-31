@@ -21,7 +21,7 @@
     <div>
         WebsiteUrl:<input #WebsiteUrl="ngForm" type="text" class="form-control" [(ngModel)]="owner.WebsiteUrl" required pattern="(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})" ngControl="WebsiteUrl" /><br />
         <div [hidden]="WebsiteUrl.valid || WebsiteUrl.pristine" class="alert alert-danger">
-            WebsiteUrl is in http://www.example.example formate
+            WebsiteUrl is in http://www.example.example format
         </div>
     </div>
     <input class="btn btn-success" type="submit" value="Submit" />

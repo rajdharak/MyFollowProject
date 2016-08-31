@@ -16,19 +16,19 @@
     <div>
         HomePageUrl:<input #HomePageUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.HomepageUrl" required pattern="(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})" ngControl="HomePageUrl" /><br />
         <div [hidden]="HomePageUrl.valid || HomePageUrl.pristine" class="alert alert-danger">
-            HomePageUrl is in http://www.example.example formate
+            HomePageUrl is in http://www.example.example format
         </div>
     </div>
     <div>
         PlayStoreUrl:<input #PlayStoreUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.PlayStoreUrl" required pattern="(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})" ngControl="PlayStoreUrl" /><br />
         <div [hidden]="PlayStoreUrl.valid || PlayStoreUrl.pristine" class="alert alert-danger">
-            PlayStoreUrl is in http://www.example.example formate
+            PlayStoreUrl is in http://www.example.example format
         </div>
     </div>
     <div>
         AppStoreUrl:<input #AppStoreUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.AppStoreUrl" required pattern="(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})" ngControl="AppStoreUrl" /><br />
         <div [hidden]="AppStoreUrl.valid || AppStoreUrl.pristine" class="alert alert-danger">
-            AppStoreUrl is in http://www.example.example formate
+            AppStoreUrl is in http://www.example.example format
         </div>
     </div>
     <div>
