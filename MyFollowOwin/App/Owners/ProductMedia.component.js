@@ -43,8 +43,9 @@ var ProductMedias = (function () {
             _this.errorMessage = err;
         });
     };
-    ProductMedias.prototype.PicUpload = function (path) {
-        this.productMedia.Data = path.target.value;
+    ProductMedias.prototype.PicUpload = function (event) {
+        var files = event.srcElement.files;
+        console.log(files);
     };
     __decorate([
         core_1.Input(), 

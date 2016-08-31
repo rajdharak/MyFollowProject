@@ -8,9 +8,8 @@ import {Service} from './../Shared/Service';
     templateUrl: 'App/Owners/ProductMedia.component.html'
 })
 
-export class ProductMedias implements OnInit {
-
-
+export class ProductMedias implements OnInit
+{
     productMedias: Array<ProductMedia>;
     errorMessage: string;
     productMedia: ProductMedia;
@@ -45,9 +44,8 @@ export class ProductMedias implements OnInit {
                 this.errorMessage = err;
             });
     }
-    PicUpload(path: any) {
-
-        this.productMedia.Data = path.target.value;
+    PicUpload(event) {
+        var files = event.srcElement.files;
+        console.log(files);
     }
-
 }

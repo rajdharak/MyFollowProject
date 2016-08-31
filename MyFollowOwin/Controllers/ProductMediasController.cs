@@ -10,15 +10,10 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MyFolllowOwin.Models;
 using MyFollowOwin.Models;
-using System.Web;
-using System.IO;
-using Microsoft.AspNet.Identity;
-using Newtonsoft.Json;
 
-namespace MyFollowOwin.Api_Controllers
+namespace MyFollowOwin.Controllers
 {
     [RoutePrefix("api/[controller]")]
-
     public class ProductMediasController : ApiController
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -77,32 +72,23 @@ namespace MyFollowOwin.Api_Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/ProductMedias
         [HttpPost]
         [Route]
+        // POST: api/ProductMedias
         [ResponseType(typeof(ProductMedia))]
-        public IHttpActionResult PostProductMedia()
+        public IHttpActionResult PostProductMedia(ProductMedia productMedia)
         {
-           var postedFile = HttpContext.Current.Request.Files["file"];
-           var root = HttpContext.Current.Server.MapPath("~/Media/");
-           Directory.CreateDirectory(root);
-           var newFileName = postedFile.FileName;
-           postedFile.SaveAs(root+newFileName);
-           var mediaUploadRequest = JsonConvert.DeserializeObject<ProductMedia>(HttpContext.Current.Request.Form["data"]);
-            mediaUploadRequest.Data = "Media/" + newFileName;
-           try
-           {
-               if (ModelState.IsValid)
-               {
-                   db.ProductMedias.Add(mediaUploadRequest);
-                   db.SaveChanges();
-               }
-               return Ok(mediaUploadRequest);
-           }
-           catch (Exception)
-           {
-               return BadRequest();
-           }
+            productMedia.CreateDate = DateTime.Today;
+            productMedia.ModifiedDate = DateTime.Today;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.ProductMedias.Add(productMedia);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = productMedia.Id }, productMedia);
         }
 
         // DELETE: api/ProductMedias/5
