@@ -16,6 +16,7 @@ var EditProduct = (function () {
     function EditProduct(productservice, activeRoute) {
         this.productservice = productservice;
         this.activeRoute = activeRoute;
+        this.active = true;
         this.products = new Array();
         this.product = new Models_1.Product();
     }
@@ -24,12 +25,15 @@ var EditProduct = (function () {
         console.log(this.productid);
     };
     EditProduct.prototype.cleanUp = function () {
+        var _this = this;
         this.product.AppStoreUrl = null;
         this.product.Description = null;
         this.product.HomepageUrl = null;
         this.product.Name = null;
         this.product.PlayStoreUrl = null;
         this.product.ProductPlatform = null;
+        this.active = false;
+        setTimeout(function () { return _this.active = true; }, 0);
     };
     EditProduct.prototype.onSubmit = function (product) {
         product.Id = this.productid;

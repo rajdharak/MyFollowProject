@@ -1,31 +1,46 @@
 ﻿
-<h1>Edit Product</h1>
-<form  (ngSubmit)="onSubmit(product)" role="form" #AddForm="ngForm">
-
-    Name:<input #Name="ngForm" type="text" class="form-control" [(ngModel)]="product.Name" ngControl="Name" />
-    <br />
-
-    Description:<input #Description="ngForm" type="text" class="form-control" [(ngModel)]="product.Description" required ngControl="Description" />
-    <br />
-
-    HomePageUrl:<input #HomePageUrl="ngForm" type="text" class="form-control" [(ngModel)]="product.HomepageUrl" required ngControl="HomePageUrl" />
-    <br />
-
-    PlayStoreUrl:<input #PlayStoreUrl="ngForm" type="text" class="form-control" [(ngModel)]="product.PlayStoreUrl" required ngControl="PlayStoreUrl" />
-    <br />
-
-    AppStoreUrl:<input #AppStoreUrl="ngForm" type="text" class="form-control" [(ngModel)]="product.AppStoreUrl" required ngControl="AppStoreUrl" />
-    <br />
-
-    ProductPlatform:<select #ProductPlatform="ngForm" class="form-control" [(ngModel)]="product.ProductPlatform" required ngControl="ProductPlatform" id="ProductPlatform">
-        <option value="Mobile">Mobile</option>
-        <option value="Web">Web</option>
-        <option value="IOT">IOT</option>
-    </select>
-    <br />
-
-    <input class="btn btn-success" type="submit" value="Submit" />  
+<h2>Edit Product Form</h2>
+<form *ngIf="active" (ngSubmit)="onSubmit(product)" role="form" #EditForm="ngForm">
+    <div>
+        Name:<input #Name="ngForm" type="text" class="form-control" [(ngModel)]="product.Name" required ngControl="Name" /><br />
+        <div [hidden]="Name.valid || Name.pristine" class="alert alert-danger">
+            Name is required field
+        </div>
+    </div>
+    <div>
+        Description:<input #Description="ngForm" class="form-control" type="text" [(ngModel)]="product.Description" required ngControl="Description" /><br />
+        <div [hidden]="Description.valid || Description.pristine" class="alert alert-danger">
+            Description is required field
+        </div>
+    </div>
+    <div>
+        HomePageUrl:<input #HomePageUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.HomepageUrl" required pattern="(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})" ngControl="HomePageUrl" /><br />
+        <div [hidden]="HomePageUrl.valid || HomePageUrl.pristine" class="alert alert-danger">
+            HomePageUrl is in http://www.example.example formate
+        </div>
+    </div>
+    <div>
+        PlayStoreUrl:<input #PlayStoreUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.PlayStoreUrl" required pattern="(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})" ngControl="PlayStoreUrl" /><br />
+        <div [hidden]="PlayStoreUrl.valid || PlayStoreUrl.pristine" class="alert alert-danger">
+            PlayStoreUrl is in http://www.example.example formate
+        </div>
+    </div>
+    <div>
+        AppStoreUrl:<input #AppStoreUrl="ngForm" class="form-control" type="text" [(ngModel)]="product.AppStoreUrl" required pattern="(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})" ngControl="AppStoreUrl" /><br />
+        <div [hidden]="AppStoreUrl.valid || AppStoreUrl.pristine" class="alert alert-danger">
+            AppStoreUrl is in http://www.example.example formate
+        </div>
+    </div>
+    <div>
+        ProductPlatform:<select #ProductPlatform="ngForm" [(ngModel)]="product.ProductPlatform" class="form-control" required ngControl="ProductPlatform" id="ProductPlatform">
+            <option value="Mobile">Mobile</option>
+            <option value="Web">Web</option>
+            <option value="IOT">IOT</option>
+        </select><br />
+        <div [hidden]="ProductPlatform.valid || ProductPlatform.pristine" class="alert alert-danger">
+            ProductPlatform is required field
+        </div>
+    </div>
+    <input class="btn btn-success" type="submit" value="Submit" />
 </form>
-<br />
-
 

@@ -15,6 +15,7 @@ export class EditProduct implements OnInit
     errorMessage: string;
     product: Product;
     productid: any;
+    active= true;
     constructor(private productservice: Service,private activeRoute:ActivatedRoute) {
         this.products = new Array<Product>();
         this.product = new Product();
@@ -33,6 +34,8 @@ export class EditProduct implements OnInit
         this.product.Name = null;
         this.product.PlayStoreUrl = null;
         this.product.ProductPlatform = null;
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
     }
 
     onSubmit(product: Product) {
