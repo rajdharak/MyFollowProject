@@ -10,31 +10,31 @@ import {UpdateProduct}from './Owners/UpdateProduct.component';
 import {FollowProduct}from './Owners/FollowProduct.component';
 const routes: RouterConfig = [
     {
-        path: 'addproduct',
+        path: 'Owner/Index/addproduct',
         component: AddProduct
     },
     {
-        path: 'listproduct',
+        path: 'Owner/Index/listproduct',
         component: ListProductsComponent
     },
     {
-        path: 'edit/:id',
+        path: 'Owner/Index/edit/:id',
         component: EditProduct
     },
     {
-        path: 'update/:id',
+        path: 'Owner/Index/update/:id',
         component: UpdateProduct
     },
     {
-        path: 'becomowner',
+        path: 'Home/Index/becomowner',
         component: OwnerFormComponent
     },
      {
-        path: 'productlist',
+         path: 'Home/Index/productlist',
         component: ProductList
     },
      {
-        path: 'follow',
+         path: 'Owner/Index/follow',
         component: FollowProduct
      }
 ];

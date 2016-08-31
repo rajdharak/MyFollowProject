@@ -9,31 +9,31 @@ var UpdateProduct_component_1 = require('./Owners/UpdateProduct.component');
 var FollowProduct_component_1 = require('./Owners/FollowProduct.component');
 var routes = [
     {
-        path: 'addproduct',
+        path: 'Owner/Index/addproduct',
         component: AddProduct_component_1.AddProduct
     },
     {
-        path: 'listproduct',
+        path: 'Owner/Index/listproduct',
         component: ListProducts_component_1.ListProductsComponent
     },
     {
-        path: 'edit/:id',
+        path: 'Owner/Index/edit/:id',
         component: EditProduct_component_1.EditProduct
     },
     {
-        path: 'update/:id',
+        path: 'Owner/Index/update/:id',
         component: UpdateProduct_component_1.UpdateProduct
     },
     {
-        path: 'becomowner',
+        path: 'Home/Index/becomowner',
         component: OwnerForm_component_1.OwnerFormComponent
     },
     {
-        path: 'productlist',
+        path: 'Home/Index/productlist',
         component: ProductList_component_1.ProductList
     },
     {
-        path: 'follow',
+        path: 'Owner/Index/follow',
         component: FollowProduct_component_1.FollowProduct
     }
 ];

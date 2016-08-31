@@ -29,8 +29,8 @@
 
             <td>
                 <button class="btn btn-danger" (click)="deleteProduct(product.Id)">Delete</button>
-                <a class="btn btn-success" [routerLink]="['/edit',product.Id]">Edit</a>
-                <a class="btn btn-success" [routerLink]="['/update',product.Id]">Update</a>
+                <a class="btn btn-success" [routerLink]="['/Owner/Index/edit',product.Id]">Edit</a>
+                <a class="btn btn-success" [routerLink]="['/Owner/Index/update',product.Id]">Update</a>
                 <br />
             </td>
         </tr>
