@@ -101,24 +101,7 @@ namespace MyFollowOwin.Controllers
             return View(model);
            }
 
-        public ActionResult RedirectToLocalAdmin(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            return RedirectToAction("Index","Admin");
-        }
-
-        public ActionResult RedirectToLocalOwner(string returnUrl)
-        {
-            if (Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            return RedirectToAction("Index", "Owner");
-        }
-        
+       
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -383,6 +366,24 @@ namespace MyFollowOwin.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+        public ActionResult RedirectToLocalAdmin(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Admin");
+        }
+
+        public ActionResult RedirectToLocalOwner(string returnUrl)
+        {
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Owner");
+        }
+
 
         internal class ChallengeResult : HttpUnauthorizedResult
         {
