@@ -13,8 +13,7 @@ import {Service} from './../Shared/Service';
     //directives: [FILE_UPLOAD_DIRECTIVES]
 })
 
-export class ProductMedias implements OnInit
-{
+export class ProductMedias implements OnInit {
     //public myHeaders: Headers[] = [];
     //public uploader: FileUploader = new FileUploader({ url: URL }); //, headers : this.test  });
 
@@ -53,19 +52,14 @@ export class ProductMedias implements OnInit
                 this.errorMessage = err;
             });
     }
-    PicUpload(event) {
-        var files = event.srcElement.files;
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            var reader = new FileReader();
-            reader.onload = this.fileLoad;
-            reader.readAsDataURL(file);
+    PicUpload(event: HTMLInputElement) {
+
+        let file = event.files[0];
+        var reader = new FileReader();
+        reader.onload = (e) => {
+            this.productMedia.Data = reader.result;
         }
-       
-    }
-    fileLoad(e)
-    {
-        this.data.push (e.target.result);
-        console.log(this.data);
+        reader.readAsDataURL(file);
+        console.log(this.productMedia.Data);
     }
 }

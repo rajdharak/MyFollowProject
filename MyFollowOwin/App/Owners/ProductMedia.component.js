@@ -46,17 +46,14 @@ var ProductMedias = (function () {
         });
     };
     ProductMedias.prototype.PicUpload = function (event) {
-        var files = event.srcElement.files;
-        for (var i = 0; i < files.length; i++) {
-            var file = files[i];
-            var reader = new FileReader();
-            reader.onload = this.fileLoad;
-            reader.readAsDataURL(file);
-        }
-    };
-    ProductMedias.prototype.fileLoad = function (e) {
-        this.data.push(e.target.result);
-        console.log(this.data);
+        var _this = this;
+        var file = event.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            _this.productMedia.Data = reader.result;
+        };
+        reader.readAsDataURL(file);
+        console.log(this.productMedia.Data);
     };
     __decorate([
         core_1.Input(), 
